@@ -1437,6 +1437,24 @@ pre .javascript .function {
   text-align: center;
   font-weight: 400;
 }
+.posts-expand .post-title .post-edit-link {
+  color: #bbb;
+  display: inline-block;
+  float: right;
+  border-bottom: none;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
+  transition-delay: 0s;
+  margin-left: -1.2em;
+}
+@media (max-width: 567px) {
+  .posts-expand .post-title .post-edit-link {
+    margin-left: initial;
+  }
+}
+.posts-expand .post-title .post-edit-link:hover {
+  color: #000;
+}
 .posts-expand .post-title-link {
   display: inline-block;
   position: relative;
@@ -1722,7 +1740,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #53fbff;
+  background: #8a45eb;
 }
 .feed-link,
 .chat {
@@ -2480,6 +2498,21 @@ embed {
 }
 .site-search form {
   display: none;
+}
+.sidebar {
+  right: auto;
+  left: 0;
+}
+.sidebar-toggle,
+.back-to-top {
+  right: auto;
+  left: 30px;
+}
+@media (max-width: 991px) {
+  .sidebar-toggle,
+  .back-to-top {
+    left: 20px;
+  }
 }
 .links-of-blogroll-inline .links-of-blogroll-item {
   display: inline-block;
