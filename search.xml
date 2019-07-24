@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2019%2F07%2F24%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <categories>
+        <category>使用说明</category>
+      </categories>
+      <tags>
+        <tag>Guide</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[first_blog]]></title>
+    <url>%2F2019%2F07%2F24%2Ffirst-blog%2F</url>
+    <content type="text"><![CDATA[Deep Learning Book Notes深度前馈网络deep feedforward network基于梯度的学习——代价函数： 使用最大似然学习条件分布。大多数现代的神经网络使用最大似然来训练。这意味着代价函数就是负的对数似然，它与训练数据和模型分布间的交叉熵等价。 均方误差和平均绝对误差在使用基于梯度的优化方法时往往成效不佳，一些饱和的输出单元当结合这些代价函数时会产生非常小的梯度，这就是为什么交叉熵代价函数比均方误差或者平均绝对误差更受欢迎的原因之一。 基于梯度的学习——输出单元： 代价函数的选择与输出单元的选择密切相关。任何可用作输出的神经网络单元，也可以被用作隐藏单元。 用于高斯输出分布的线性单元：一种基于仿射变换的输出单元，仿射变换不具有非线性，所以这些单元往往直接被称为线性单元。 用于Bernoulli输出分布（伯努利分布）的sigmoid单元：许多任务需要预测而执行变量的值。具有两个类的分类问题可以归结为这种形式。 用于Multinoulli输出分布（多项分布）的softmax单元：任何时候当我们想要表示一个具有n个可能取值的离散型随机变量的分布时，我们都可以使用softmax函数。它可以看作是sigmoid函数的扩展，其中sigmoid函数用来表示二值型变量的分布。 隐藏单元： 整流线性单元及其扩展：整流线性单元易于优化，它与线性单元非常类似。线性单元和整流线性单元的唯一区别在于整流线性单元在其一半的定义域上输出为零。 logistic sigmoid与双曲正切函数： 其他隐藏单元：softmax单元，径向基函数（rational basis function，RBF），softplus函数，硬双曲正切函数（hard tanh) 深度学习中的正则化和优化]]></content>
+      <categories>
+        <category>Book Notes</category>
+      </categories>
+      <tags>
+        <tag>Deep Learning</tag>
+      </tags>
+  </entry>
+</search>
