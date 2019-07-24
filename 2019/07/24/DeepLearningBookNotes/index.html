@@ -101,17 +101,20 @@
   };
 </script>
 
-  <meta name="description" content="For Code, For Beauty.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://doublebelief.github.io/about/index.html">
+  <meta name="description" content="Deep Learning Book Notes深度前馈网络deep feedforward network基于梯度的学习——代价函数：  使用最大似然学习条件分布。大多数现代的神经网络使用最大似然来训练。这意味着代价函数就是负的对数似然，它与训练数据和模型分布间的交叉熵等价。 均方误差和平均绝对误差在使用基于梯度的优化方法时往往成效不佳，一些饱和的输出单元当结合这些代价函数时会产生非常小的梯度，">
+<meta name="keywords" content="Deep Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度学习读书笔记（Ⅰ）">
+<meta property="og:url" content="http://doublebelief.github.io/2019/07/24/DeepLearningBookNotes/index.html">
 <meta property="og:site_name" content="Double Belief Blog">
-<meta property="og:description" content="For Code, For Beauty.">
+<meta property="og:description" content="Deep Learning Book Notes深度前馈网络deep feedforward network基于梯度的学习——代价函数：  使用最大似然学习条件分布。大多数现代的神经网络使用最大似然来训练。这意味着代价函数就是负的对数似然，它与训练数据和模型分布间的交叉熵等价。 均方误差和平均绝对误差在使用基于梯度的优化方法时往往成效不佳，一些饱和的输出单元当结合这些代价函数时会产生非常小的梯度，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-24T04:50:55.001Z">
+<meta property="og:image" content="http://doublebelief.github.io/images/1563849791574.png">
+<meta property="og:updated_time" content="2019-07-24T07:14:05.898Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="For Code, For Beauty.">
+<meta name="twitter:title" content="深度学习读书笔记（Ⅰ）">
+<meta name="twitter:description" content="Deep Learning Book Notes深度前馈网络deep feedforward network基于梯度的学习——代价函数：  使用最大似然学习条件分布。大多数现代的神经网络使用最大似然来训练。这意味着代价函数就是负的对数似然，它与训练数据和模型分布间的交叉熵等价。 均方误差和平均绝对误差在使用基于梯度的优化方法时往往成效不佳，一些饱和的输出单元当结合这些代价函数时会产生非常小的梯度，">
+<meta name="twitter:image" content="http://doublebelief.github.io/images/1563849791574.png">
 
 
 
@@ -119,7 +122,7 @@
 
   
   
-  <link rel="canonical" href="http://doublebelief.github.io/about/">
+  <link rel="canonical" href="http://doublebelief.github.io/2019/07/24/DeepLearningBookNotes/">
 
 
 
@@ -130,7 +133,7 @@
 </script>
 
   
-  <title>about | Double Belief Blog</title>
+  <title>深度学习读书笔记（Ⅰ） | Double Belief Blog</title>
   
 
 
@@ -295,25 +298,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -357,45 +341,235 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doublebelief.github.io/2019/07/24/DeepLearningBookNotes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Double Belief">
+      <meta itemprop="description" content="For Code, For Beauty.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Double Belief Blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">about
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
+        
+          <h1 class="post-title" itemprop="name headline">深度学习读书笔记（Ⅰ）
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-24 10:46:41 / 修改时间：15:14:05" itemprop="dateCreated datePublished" datetime="2019-07-24T10:46:41+08:00">2019-07-24</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Book-Notes/" itemprop="url" rel="index"><span itemprop="name">Book Notes</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Deep-Learning-Book-Notes"><a href="#Deep-Learning-Book-Notes" class="headerlink" title="Deep Learning Book Notes"></a>Deep Learning Book Notes</h1><h2 id="深度前馈网络deep-feedforward-network"><a href="#深度前馈网络deep-feedforward-network" class="headerlink" title="深度前馈网络deep feedforward network"></a>深度前馈网络deep feedforward network</h2><p><strong>基于梯度的学习——代价函数</strong>：</p>
+<ol>
+<li>使用最大似然学习条件分布。大多数现代的神经网络使用最大似然来训练。这意味着代价函数就是负的对数似然，它与训练数据和模型分布间的交叉熵等价。</li>
+<li>均方误差和平均绝对误差在使用基于梯度的优化方法时往往成效不佳，一些饱和的输出单元当结合这些代价函数时会产生非常小的梯度，这就是为什么交叉熵代价函数比均方误差或者平均绝对误差更受欢迎的原因之一。</li>
+</ol>
+<p><strong>基于梯度的学习——输出单元</strong>：</p>
+<ol>
+<li>代价函数的选择与输出单元的选择密切相关。任何可用作输出的神经网络单元，也可以被用作隐藏单元。</li>
+<li>用于高斯输出分布的线性单元：一种基于仿射变换的输出单元，仿射变换不具有非线性，所以这些单元往往直接被称为线性单元。</li>
+<li>用于Bernoulli输出分布（伯努利分布）的sigmoid单元：许多任务需要预测而执行变量的值。具有两个类的分类问题可以归结为这种形式。</li>
+<li>用于Multinoulli输出分布（多项分布）的softmax单元：任何时候当我们想要表示一个具有n个可能取值的离散型随机变量的分布时，我们都可以使用softmax函数。它可以看作是sigmoid函数的扩展，其中sigmoid函数用来表示二值型变量的分布。</li>
+</ol>
+<p><strong>隐藏单元</strong>：</p>
+<ol>
+<li><p>整流线性单元及其扩展：整流线性单元易于优化，它与线性单元非常类似。线性单元和整流线性单元的唯一区别在于整流线性单元在其一半的定义域上输出为零。</p>
+</li>
+<li><p>logistic sigmoid与双曲正切函数：</p>
+<p><img src="/images/1563849791574.png" alt="1563849791574"></p>
+</li>
+<li><p>其他隐藏单元：softmax单元，径向基函数（rational basis function，RBF），softplus函数，硬双曲正切函数（hard tanh)</p>
+</li>
+</ol>
+<h2 id="深度学习中的正则化和优化"><a href="#深度学习中的正则化和优化" class="headerlink" title="深度学习中的正则化和优化"></a>深度学习中的正则化和优化</h2>
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Double Belief</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://doublebelief.github.io/2019/07/24/DeepLearningBookNotes/" title="深度学习读书笔记（Ⅰ）">http://doublebelief.github.io/2019/07/24/DeepLearningBookNotes/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
         
           
         
-      </div>
+        <div class="post-tags">
+          
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
+        </div>
+      
+
       
       
       
-    </div>
-    
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/24/MachineLearningBookNotes/" rel="prev" title="机器学习读书笔记（Ⅰ）">
+                机器学习读书笔记（Ⅰ） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
 
 
-
-    
-    
-    
   </div>
 
 
@@ -424,8 +598,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -546,6 +729,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Deep-Learning-Book-Notes"><span class="nav-number">1.</span> <span class="nav-text">Deep Learning Book Notes</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#深度前馈网络deep-feedforward-network"><span class="nav-number">1.1.</span> <span class="nav-text">深度前馈网络deep feedforward network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度学习中的正则化和优化"><span class="nav-number">1.2.</span> <span class="nav-text">深度学习中的正则化和优化</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
