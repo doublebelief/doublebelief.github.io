@@ -111,7 +111,10 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://doublebelief.github.io/images/AutoML_controller.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/AutoML_taxonomies.png">
-<meta property="og:updated_time" content="2019-08-07T08:09:54.784Z">
+<meta property="og:image" content="http://doublebelief.github.io/images/RL_workflow.png">
+<meta property="og:image" content="http://doublebelief.github.io/images/meta_learning.png">
+<meta property="og:image" content="http://doublebelief.github.io/images/AutoML_Survey_Paper_%E2%85%A0.jpg">
+<meta property="og:updated_time" content="2019-08-08T05:19:28.268Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自动化机器学习综述笔记">
 <meta name="twitter:description" content="Auto Machine Learning Survey Notes(Ⅰ) Paper Name: Yao, Q., Wang, M., Chen, Y., Dai, W., Yi-Qi, H., Yu-Feng, L., … Yang, Y. (2018). Taking Human out of Learning Applications: A Survey on Automated Mach">
@@ -424,7 +427,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-07 16:09:54" itemprop="dateModified" datetime="2019-08-07T16:09:54+08:00">2019-08-07</time>
+                <time title="修改时间：2019-08-08 13:19:28" itemprop="dateModified" datetime="2019-08-08T13:19:28+08:00">2019-08-08</time>
               </span>
             
           
@@ -526,6 +529,7 @@
 <h2 id="Fourth-Section"><a href="#Fourth-Section" class="headerlink" title="Fourth Section"></a>Fourth Section</h2><p>In fourth section, this paper introduces some basic techniques for optimizer. It has three parts including simple search approaches, optimization from samples and gradient descent. Simple search is a naive search approach, and grid search and random search are two common approaches.  </p>
 <p>Optimization from samples is a kind of smarter search approach, and this paper divide existing approaches into three categories, heuristic search, model-based derivative-free optimization, and reinforcement learning. Some popular heuristic search methods are Particle swarm optimization(PSO), Evolutionary Algorithms. The popular methods of model-based derivative-free optimization are Bayesian optimization, classification-based optimization (CBO) and simultaneous optimistic optimization (SOO) . Reinforcement learning (RL)  is a very general and strong optimization framework, which can solve problems with delayed feedbacks.</p>
 <p>Greedy search is a natural strategy to solve multi-step decision-making problem.</p>
+<p><img src="/images/RL_workflow.png" alt="RF_workflow"></p>
 <blockquote>
 <p>在第四部分中，本文介绍了优化器的一些基本技术。 它有三个部分，包括简单搜索方法，样本优化和梯度下降。 简单搜索是一种朴素的搜索方法，其中两种常见的方法分别是网格搜索和随机搜索。样本优化是一种更智能的搜索方法，本文将现有的相关方法分为三类：启发式搜索，基于模型的无导数优化和强化学习。 一些流行的启发式搜索方法是粒子群优化（PSO），进化算法。 基于模型的无导数优化的流行方法是贝叶斯优化，基于分类的优化（CBO）和同时优化优化（SOO）。 强化学习（RL）是一个非常通用且强大的优化框架，可以解决延迟反馈的问题。此外，贪心搜索是解决多步决策问题的常用策略。</p>
 </blockquote>
@@ -543,6 +547,7 @@
 </ol>
 <p>Transfer learning tries to improve the learning on target domain and learning task, by using the knowledge from the source domain and learning task.</p>
 <p>Transfer learning has been exploited to reuse trained surrogate models or promising search strategies from past AutoML search (source) and improve the efficiency in current AutoML task (target). By transferring knowledge from previous configuration evaluations, we can avoid training model from scratch for the upcoming evaluations and significantly improve the efficiency.</p>
+<p><img src="/images/meta_learning.png" alt="meta-learning"></p>
 <blockquote>
 <p>在第六部分，本文介绍了一些比较先进的技术，主要有两个主题，元学习和迁移学习。</p>
 <p>元学习辅助AutoML，一方面通过对学习问题和工具的表征。另一方面，通过编码以往的经验来作为对解决未来问题的指导。</p>
@@ -571,6 +576,7 @@
 <p>AutoML是一个非常复杂的问题，也是一个非常活跃的研究领域，AutoML中存在许多新的机会和问题，还有许多研讨会和比赛。</p>
 <p>为优化器提出算法可以实现更高的效率，这样使得优化器在达到良好性能之前访问较少的配置；或者为评估器设计更好的方法，这可以在更短的时间内提供更准确的评估。</p>
 </blockquote>
+<h2 id="Appendix-Ⅰ-This-Survey-Mindmap"><a href="#Appendix-Ⅰ-This-Survey-Mindmap" class="headerlink" title="Appendix Ⅰ : This Survey Mindmap"></a>Appendix Ⅰ : This Survey Mindmap</h2><p><a href="/images/AutoML_Survey_Paper_Ⅰ.jpg"><img src="/images/AutoML_Survey_Paper_%E2%85%A0.jpg" alt="Mindmap"></a></p>
 
       
     </div>
@@ -838,7 +844,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Auto-Machine-Learning-Survey-Notes-Ⅰ"><span class="nav-number">1.</span> <span class="nav-text">Auto Machine Learning Survey Notes(Ⅰ)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#First-Section"><span class="nav-number">1.1.</span> <span class="nav-text">First Section</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Second-Section"><span class="nav-number">1.2.</span> <span class="nav-text">Second Section</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Third-Section"><span class="nav-number">1.3.</span> <span class="nav-text">Third Section</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fourth-Section"><span class="nav-number">1.4.</span> <span class="nav-text">Fourth Section</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fifth-Section"><span class="nav-number">1.5.</span> <span class="nav-text">Fifth Section</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sixth-Section"><span class="nav-number">1.6.</span> <span class="nav-text">Sixth Section</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Seventh-Section"><span class="nav-number">1.7.</span> <span class="nav-text">Seventh Section</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eighth-Section"><span class="nav-number">1.8.</span> <span class="nav-text">Eighth Section</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Auto-Machine-Learning-Survey-Notes-Ⅰ"><span class="nav-number">1.</span> <span class="nav-text">Auto Machine Learning Survey Notes(Ⅰ)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#First-Section"><span class="nav-number">1.1.</span> <span class="nav-text">First Section</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Second-Section"><span class="nav-number">1.2.</span> <span class="nav-text">Second Section</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Third-Section"><span class="nav-number">1.3.</span> <span class="nav-text">Third Section</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fourth-Section"><span class="nav-number">1.4.</span> <span class="nav-text">Fourth Section</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fifth-Section"><span class="nav-number">1.5.</span> <span class="nav-text">Fifth Section</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sixth-Section"><span class="nav-number">1.6.</span> <span class="nav-text">Sixth Section</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Seventh-Section"><span class="nav-number">1.7.</span> <span class="nav-text">Seventh Section</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eighth-Section"><span class="nav-number">1.8.</span> <span class="nav-text">Eighth Section</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Appendix-Ⅰ-This-Survey-Mindmap"><span class="nav-number">1.9.</span> <span class="nav-text">Appendix Ⅰ : This Survey Mindmap</span></a></li></ol></li></ol></div>
             
 
           </div>
