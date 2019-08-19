@@ -101,17 +101,24 @@
   };
 </script>
 
-  <meta name="description" content="For Code, For Beauty.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://doublebelief.github.io/categories/index.html">
+  <meta name="description" content="Neural Architecture Search with Reinforcement Learning Zoph, B., &amp;amp; Le, Q. V. (2016). Neural Architecture Search with Reinforcement Learning. 1–16. Retrieved from http://arxiv.org/abs/1611.01578  I">
+<meta name="keywords" content="AutoML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NAS论文阅读笔记">
+<meta property="og:url" content="http://doublebelief.github.io/2019/08/19/NASpaperNotes/index.html">
 <meta property="og:site_name" content="Double Belief Blog">
-<meta property="og:description" content="For Code, For Beauty.">
+<meta property="og:description" content="Neural Architecture Search with Reinforcement Learning Zoph, B., &amp;amp; Le, Q. V. (2016). Neural Architecture Search with Reinforcement Learning. 1–16. Retrieved from http://arxiv.org/abs/1611.01578  I">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-24T04:29:56.339Z">
+<meta property="og:image" content="http://doublebelief.github.io/images/OverviewNAS.png">
+<meta property="og:image" content="http://doublebelief.github.io/images/DistributedTraining4NAS.png">
+<meta property="og:image" content="http://doublebelief.github.io/images/RNN_Cell.png">
+<meta property="og:image" content="http://doublebelief.github.io/images/CIFAR_10_NAS_Results.png">
+<meta property="og:image" content="http://doublebelief.github.io/images/PTB_NAS_Results.png">
+<meta property="og:updated_time" content="2019-08-19T07:56:37.627Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="For Code, For Beauty.">
+<meta name="twitter:title" content="NAS论文阅读笔记">
+<meta name="twitter:description" content="Neural Architecture Search with Reinforcement Learning Zoph, B., &amp;amp; Le, Q. V. (2016). Neural Architecture Search with Reinforcement Learning. 1–16. Retrieved from http://arxiv.org/abs/1611.01578  I">
+<meta name="twitter:image" content="http://doublebelief.github.io/images/OverviewNAS.png">
 
 
 
@@ -119,7 +126,7 @@
 
   
   
-  <link rel="canonical" href="http://doublebelief.github.io/categories/">
+  <link rel="canonical" href="http://doublebelief.github.io/2019/08/19/NASpaperNotes/">
 
 
 
@@ -130,7 +137,7 @@
 </script>
 
   
-  <title>分类 | Double Belief Blog</title>
+  <title>NAS论文阅读笔记 | Double Belief Blog</title>
   
 
 
@@ -260,7 +267,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
 
     
     
@@ -342,87 +349,315 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doublebelief.github.io/2019/08/19/NASpaperNotes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Double Belief">
+      <meta itemprop="description" content="For Code, For Beauty.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Double Belief Blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">分类
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
+          <h1 class="post-title" itemprop="name headline">NAS论文阅读笔记
+
               
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-              目前共计 2 个分类
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Book-Notes/">Book Notes</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper-Notes/">Paper Notes</a><span class="category-list-count">3</span></li></ul>
-            </div>
-          </div>
+            
+          </h1>
         
-      </div>
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-19 15:54:05 / 修改时间：15:56:37" itemprop="dateCreated datePublished" datetime="2019-08-19T15:54:05+08:00">2019-08-19</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Paper-Notes/" itemprop="url" rel="index"><span itemprop="name">Paper Notes</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">11k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">10 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="Neural-Architecture-Search-with-Reinforcement-Learning"><a href="#Neural-Architecture-Search-with-Reinforcement-Learning" class="headerlink" title="Neural Architecture Search with Reinforcement Learning"></a>Neural Architecture Search with Reinforcement Learning</h1><blockquote>
+<p>Zoph, B., &amp; Le, Q. V. (2016). Neural Architecture Search with Reinforcement Learning. 1–16. Retrieved from <a href="http://arxiv.org/abs/1611.01578" target="_blank" rel="noopener">http://arxiv.org/abs/1611.01578</a></p>
+</blockquote>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><blockquote>
+<p>Although Neural Architecture Application has become easier, designing architectures still requires a lot of expert knowledge and takes ample time.  This paper presents Neural Architecture Search, a gradient-based method for finding good architectures (see Figure 1) . It is based on the observation that the structure and connectivity of a neural network can be typically specified by a variable-length string. It is therefore possible to use a recurrent network – the controller – to generate such string. Training the network specified by the string – the “child network” – on the real data will result in an accuracy on a validation set. Using this accuracy as the reward signal, we can compute the policy gradient to update the controller. As a result, in the next iteration, the controller will give higher probabilities to architectures that receive high accuracies. In other words, the controller will learn to improve its search over time.</p>
+<p><img src="/images/OverviewNAS.png" alt="NAS_overview"></p>
+</blockquote>
+<p>神经网络架构的应用虽然比较广泛，但是设计神经网络架构依旧需要花费很多资源和时间。鉴于此，这篇论文提出了一个基于梯度算法的方法来搜索出最优的神经网络架构，这种方法也基于一个事实——<strong>神经网络的结构和连接通常能够被一个变长的字符串指定</strong>。因此，这篇论文提出了一个循环网络，这个循环网络包含一个控制器和一个“子网络”，控制器用于产生这样的变长字符串，之后根据这个字符串训练出相应的“子网络”, 并在验证集上进行验证，产生一个准确度，然后把这个准确度作为一个反馈信号，计算出策略梯度来更新控制器，因此，在下一次迭代中，控制器将会有更高概率产生高准确率的架构，换句话说，控制器将慢慢地优化对神经网络的搜索。</p>
+<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><blockquote>
+<p>Hyperparameter optimization is an important research topic in machine learning, and is widely used in practice. Despite their success, these methods are still limited in that they only search models from a fixed-length space. There are Bayesian optimization methods that allow to search non fixed length architectures (Bergstra et al., 2013; Mendoza et al., 2016), but they are less general and less flexible than the method proposed in this paper.<br>Modern neuro-evolution algorithms，are much more flexible for composing novel models, yet they are usually less practical at a large scale. </p>
+<p>The controller in Neural Architecture Search is auto-regressive, which means it predicts hyperparameters one a time, conditioned on previous predictions. This idea is borrowed from the decoder in end-to-end sequence to sequence learning (Sutskever et al., 2014). Unlike sequence to sequence learning, our method optimizes a non-differentiable metric, which is the accuracy of the child network. It is therefore similar to the work on BLEU optimization in Neural Machine Translation (Ran- zato et al., 2015; Shen et al., 2016). Unlike these approaches, our method learns directly from the reward signal without any supervised bootstrapping.</p>
+</blockquote>
+<p>超参数调优是在机器学习里是一个重要的研究课题，有好多方法都能得到好的效果，但是他们均只能在固定长度神经网络的搜索空间里搜索模型，另外，贝叶斯优化的方法虽然能够让这些方法搜索不定长的架构，但是这样的方法没有这篇论文中的方法更灵活。</p>
+<p>一些现代的神经网络进化算法，在生成模型时更为灵活，但是它们通常不能用于大规模的计算。</p>
+<p>在本文神经网络搜索里的控制器是自动回归的，也就是说它能基于之前的预测更新超参数。这个思想类似于端到端的序列学习里的解码器，但本文与之不同的是，本文的方法优化了一个不可微分的度量，这个度量是子网络的准确度。而这个度量的思想又类似于BLEU在神经网络机器翻译上的优化，但与这些方法不同的是，本文的方法直接按照反馈信息优化，而不需要监督指令。</p>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><ul>
+<li><p>Generate Model Descriptions with A Controller Recurrent Neural Network(通过控制器循环网络产生模型)</p>
+<blockquote>
+<p>The process of generating an architecture stops if the number of layers exceeds a certain value. This value follows a schedule where we increase it as training progresses. Once the controller RNN finishes generating an architecture, a neural network with this architecture is built and trained. At convergence, the accuracy of the network on a held-out validation set is recorded. The parameters of the controller RNN, θc, are then optimized in order to maximize the expected validation accuracy of the proposed architectures.</p>
+</blockquote>
+<p>如果网络层的数量超过了一个确定的值，那么产生神经网络架构的过程将会停止，其中这个确定的值是随着训练进程不断增加的。一旦循环网络控制器停止产生神经网络架构，那么，基于这个架构的神经网络则会被构建和训练，当神经网络趋于收敛时，这个神经网络在被留出的验证集上的准确度将会被记录。接着循环网络控制器的参数θc 将会被优化，以便产生最大期望验证集准确率的神经架构。</p>
+</li>
+<li><p>Training with Reinforce(利用强化学习进行训练)</p>
+<blockquote>
+<p>Use this accuracy R as the reward signal and use reinforcement learning to train the controller. More concretely, to find the optimal architecture, we ask our controller to maximize its expected reward. Since the reward signal R is non-differentiable, we need to use a policy gradient method to iteratively update θc.</p>
+<p>As training a child network can take hours, we use distributed training and asynchronous parameter updates in order to speed up the learning process of the controller . We use a parameter-server scheme where we have a parameter server of S shards, that store the shared parameters for K controller replicas. Each controller replica samples m different child architectures that are trained in parallel. The controller then collects gradients according to the results of that minibatch of m architectures at convergence and sends them to the parameter server in order to update the weights across all controller replicas. In our implementation, convergence of each child network is reached when its training exceeds a certain number of epochs. This scheme of parallelism is summarized in Figure 3</p>
+<p><img src="/images/DistributedTraining4NAS.png" alt="DistributesTrain4NAS"></p>
+</blockquote>
+<p>这篇论文使用模型准确度R作为反馈信号，并使用强化学习来训练控制器，具体来讲，为了找到最优的架构，控制器需要产生一个有最大准确度的模型架构。但是因为反馈信号R是不可微分的，所以这篇文章使用策略梯度方法来迭代更新控制器参数θc。</p>
+<p>因为训练一个子网络会耗费大量时间，这篇论文采用了分布式训练和异步参数更新的方法来加快控制器的训练进程。这个方法具体来讲就是，使用一组s个参数服务器分片，这组参数服务器包含着k个控制器副本的参数，并且s个参数服务器向这k个控制器副本提供参数。而每个控制器副本分成m个不同的子架构，并且这每个不同的子架构平行训练，训练后的准确度将会被记录，然后计算关于控制器参数θc的梯度，而这个梯度将会被返回到参数服务器，进行迭代更新。</p>
+</li>
+<li><p>Increase Architecture Complexity with Skip Connections and Other Layer Types(通过跳过连接来增加结构复杂度以及其他网络层类型)</p>
+<blockquote>
+<p>We introduce a method that allows our controller to propose skip connections or branching layers, thereby widening the search space. To enable the controller to predict such connections, we use a set-selection type attention which was built upon the attention mechanism. At layer N, we add an anchor point which has N− 1 content-based sigmoids to indicate the previous layers that need to be connected. Each sigmoid is a function of the current hidden state of the controller and the previous hidden states of the previous N − 1 anchor points. We then sample from these sigmoids to decide what previous layers to be used as inputs to the current layer. </p>
+<p>To be able to add more types of layers, we need to add an additional step in the controller RNN to predict the layer type, then other hyperparameters associated with it.</p>
+</blockquote>
+<p>这篇论文介绍了一种方法，这种方法能够让控制器跳过连接或分支层，进而可以拓宽搜索空间。这种方法引入了注意力机制，在控制器网络第N层增加了一个定位点，这个定位点有N-1个表示前面需要连接的网络层的激活函数。每一个激活函数都是一个关于当前层隐藏状态和前n-1个定位点隐藏状态的函数。这种方法就会根据这个函数来确定前面的网络层是否作为当前层的输入。</p>
+<p>为了能够增加更多类型的网络层（不仅仅是卷积层，还有池化层，标准化层等）,需要在控制器的循环神经网络中增加一个额外的步骤来预测网络层的类型和与之关联一些的超参数。</p>
+</li>
+<li><p>Generate Recurrent Cell Architectures(产生循环网络架构)</p>
+<blockquote>
+<p>The computations for basic RNN and LSTM cells can be generalized as a tree of steps that take xt and ht−1 as inputs and produce ht as final output. The controller RNN needs to label each node in the tree with a combination method (addition, elementwise multiplication, etc.) and an activation function (tanh, sigmoid, etc.) to merge two inputs and produce one output.  Two outputs are then fed as inputs to the next node in the tree. To allow the controller RNN to select these methods and functions, we index the nodes in the tree in an order so that the controller RNN can visit each node one by one and label the needed hyperparameters.</p>
+<p><img src="/images/RNN_Cell.png" alt="RNN_Cell"></p>
+</blockquote>
+<p>基本的RNN和LSTM结构的计算，能够被一般化为一棵阶梯树，它以xt和h(t-1)作为输入，产生h(t)作为最后输出。这个控制器循环网络需要标注在阶梯树里的每个节点，并且使用一个结合方法和一个激活函数来合并两个输入并产生一个输出，两个输出之后又被作为树中下一个节点的输入。为了允许控制器循环网络能够选择这些方法和函数，这里为阶梯树上的每一个节点按照次序创建了索引，以便控制器循环网络能够依次遍历每一个节点，并且标注需要的超参数。</p>
+</li>
+</ul>
+<h2 id="Experiments-and-Results"><a href="#Experiments-and-Results" class="headerlink" title="Experiments and Results"></a>Experiments and Results</h2><ul>
+<li><p>Learning Convolutional Architectures For CIFAR-10(在CIFAR-10数据集上学习卷积神经网络)</p>
+<blockquote>
+<p><strong>Training details:</strong> The controller RNN is a two-layer LSTM with 35 hidden units on each layer. It is trained with the ADAM optimizer (Kingma &amp; Ba, 2015) with a learning rate of 0.0006. The weights of the controller are initialized uniformly between -0.08 and 0.08. For the distributed train- ing, we set the number of parameter server shards S to 20, the number of controller replicas K to 100 and the number of child replicas m to 8, which means there are 800 networks being trained on 800 GPUs concurrently at any time.<br>Once the controller RNN samples an architecture, a child model is constructed and trained for 50 epochs. The reward used for updating the controller is the maximum validation accuracy of the last 5 epochs cubed. The validation set has 5,000 examples randomly sampled from the training set, the remaining 45,000 examples are used for training. The settings for training the CIFAR-10 child models are the same with those used in Huang et al. (2016a). We use the Momentum Optimizer with a learning rate of 0.1, weight decay of 1e-4, momentum of 0.9 and used Nesterov Momentum (Sutskever et al., 2013).<br>During the training of the controller, we use a schedule of increasing number of layers in the child networks as training progresses. On CIFAR-10, we ask the controller to increase the depth by 2 for the child models every 1,600 samples, starting at 6 layers.</p>
+<p><strong>Results:</strong></p>
+<p><img src="/images/CIFAR_10_NAS_Results.png" alt="results"></p>
+</blockquote>
+<p><strong>训练细节：</strong>控制器循环网络采用两层的LSTM，每层有35个隐藏单元，并采用学习率是0.0006的ADAM优化器。控制器的初始换权重是在-0.08到0.08之间。对于分布式训练来讲，参数服务器分片S是20个，控制器副本K是100个，子网络架构m是8个，所以总共可以有800个网络同时在800个GPU上训练。每一个子网络架构训练50各阶段，更新控制器使用的反馈参数是最后五个阶段中最大的验证准确率。验证集是从训练数据中随机选择的5000个样本，而剩下的45000个样本则作为训练集。在训练控制器的过程中，使用了一个随时间增长的子网络层数，初始层数是6层，每训练1600个样本就增加2层。</p>
+<p><strong>训练结果：</strong>神经网络架构搜索能够设计几个表现优良的网络架构，其在CIFAR-10上的表现性能和一些最好的模型差不多。</p>
+</li>
+<li><p>Learning Recurrent Cells for Penn TreeBank(在PTB数据集上学习循环神经网络)</p>
+<blockquote>
+<p><strong>Training details:</strong> The controller and its training are almost identical to the CIFAR-10 experiments except for a few modifications: 1) the learning rate for the controller RNN is 0.0005, slightly smaller than that of the controller RNN in CIFAR-10, 2) in the distributed training, we set S to 20, K to 400 and m to 1, which means there are 400 networks being trained on 400 CPUs concurrently at any time, 3) during asynchronous training we only do parameter updates to the parameter-server once 10 gradients from replicas have been accumulated.</p>
+<p><strong>Results:</strong></p>
+<p><img src="/images/PTB_NAS_Results.png" alt="PTB_Res"></p>
+</blockquote>
+<p><strong>训练细节：</strong>这个实验的控制器循环网络和训练与上面（CIFAR-10）的实验类似，主要有以下几个不同：</p>
+<ol>
+<li>优化器的学习率是0.005;</li>
+<li>分布式训练中，参数服务器S是20个，控制器副本K是400个，子网络架构m是1个；</li>
+<li>在异步训练中，只有控制器副本积累到10个梯度时才更新参数服务器的参数。</li>
+</ol>
+<p><strong>训练结果：</strong>神经网络搜索获取到的模型在该数据集上表现优于其他一些先进的模型。另外，还可以将获取到的模型通过迁移学习使用在其他的问题解决上。</p>
+</li>
+</ul>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><blockquote>
+<p>Neural Architecture Search is an idea of using a recurrent neural network to compose neural network architectures. By using recurrent network as the controller, our method is flexible so that it can search variable-length architecture space. Our method has strong empirical performance on very challenging benchmarks and presents a new research direction for automatically finding good neural network architectures.</p>
+</blockquote>
+<p>NAS是一种使用循环神经网络生成神经网络架构的想法，通过使用循环神经网络作为控制器，这种方法能够很灵活的用于搜索变长的架构空间，而且在一些数据集上具有很好的实验性能，为自动化查找神经网络架构提供了一个新的研究方向。</p>
+
       
     </div>
+
     
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
 
 
 
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Double Belief</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
     
+    <a href="http://doublebelief.github.io/2019/08/19/NASpaperNotes/" title="NAS论文阅读笔记">http://doublebelief.github.io/2019/08/19/NASpaperNotes/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
     
-    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/AutoML/" rel="tag"># AutoML</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/14/NASSurveyNotes/" rel="next" title="神经网络结构搜索综述笔记">
+                <i class="fa fa-chevron-left"></i> 神经网络结构搜索综述笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
@@ -455,8 +690,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -581,6 +825,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Architecture-Search-with-Reinforcement-Learning"><span class="nav-number">1.</span> <span class="nav-text">Neural Architecture Search with Reinforcement Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">1.2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methods"><span class="nav-number">1.3.</span> <span class="nav-text">Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments-and-Results"><span class="nav-number">1.4.</span> <span class="nav-text">Experiments and Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
