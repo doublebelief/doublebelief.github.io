@@ -115,7 +115,9 @@
 <meta property="og:image" content="http://doublebelief.github.io/images/CIFAR_10_NAS_Results.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/PTB_NAS_Results.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/NetworkLevelSearchSpace.png">
-<meta property="og:updated_time" content="2019-08-20T08:17:57.700Z">
+<meta property="og:image" content="http://doublebelief.github.io/images/ControllerConstructBlock.png">
+<meta property="og:image" content="http://doublebelief.github.io/images/performanceOfNAS.png">
+<meta property="og:updated_time" content="2019-08-21T07:30:17.163Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NAS论文阅读笔记">
 <meta name="twitter:description" content="Neural Architecture Search with Reinforcement Learning Zoph, B., &amp;amp; Le, Q. V. (2016). Neural Architecture Search with Reinforcement Learning. 1–16. Retrieved from http://arxiv.org/abs/1611.01578  I">
@@ -428,7 +430,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-20 16:17:57" itemprop="dateModified" datetime="2019-08-20T16:17:57+08:00">2019-08-20</time>
+                <time title="修改时间：2019-08-21 15:30:17" itemprop="dateModified" datetime="2019-08-21T15:30:17+08:00">2019-08-21</time>
               </span>
             
           
@@ -471,7 +473,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">18k</span>
+              <span title="本文字数">22k</span>
             </span>
           
 
@@ -483,7 +485,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">16 分钟</span>
+              <span title="阅读时长">20 分钟</span>
             </span>
           
 
@@ -620,6 +622,38 @@
 <p>For future work, within the current framework, related applications such as object detection should be plausible; we could also try untying the cell architecture α across different layers  with little computation overhead. Beyond the current framework, a more general network level search space should be beneficial.</p>
 </blockquote>
 <p>这种将核架构搜索和外部网络架构搜索一同使用的NAS是一个较好的发展方向，未来也可以应用于其他相关领域，比如物体检测。此外也可以从减少计算资源的角度着手，这样可以使得NAS有更广泛的应用场景。</p>
+<h1 id="Learning-Transferable-Architecture-for-Scalable-Image-Recognition"><a href="#Learning-Transferable-Architecture-for-Scalable-Image-Recognition" class="headerlink" title="Learning Transferable Architecture for Scalable Image Recognition"></a>Learning Transferable Architecture for Scalable Image Recognition</h1><blockquote>
+<p>Zoph, B., Vasudevan, V., Shlens, J., &amp; Le, Q. V. (2018). Learning Transferable Architectures for Scalable Image Recognition. Proceedings of the IEEE Computer Society Conference on Computer Vision and Pattern Recognition, 8697–8710. <a href="https://doi.org/10.1109/CVPR.2018.00907" target="_blank" rel="noopener">https://doi.org/10.1109/CVPR.2018.00907</a></p>
+</blockquote>
+<h2 id="Introduction-2"><a href="#Introduction-2" class="headerlink" title="Introduction"></a>Introduction</h2><blockquote>
+<p>In this paper, we study a new paradigm of designing convolutional architectures and describe a scalable method to optimize convolutional architectures on a dataset of interest, for instance the ImageNet classification dataset. We design a search space (which we call “the NASNet search space”) so that the complexity of the architecture is independent of the depth of the network and the size of input images. Our main result is that the best architecture found on CIFAR-10, called NASNet. The image features learned by NASNets are generically useful and transfer to other computer vision problems.</p>
+</blockquote>
+<p>这篇论文提出了一中新的设计卷积网络架构的方法，并且优化了一些基于数据集的网络架构，设计了一个搜索空间，这个搜索空间被称为NASNet搜索空间。这种搜索空间使网络架构的复杂度独立于网络的深度和输入图片的大小。另外，这篇论文的主要成果就是在CIFAR-10数据集上得到的最优架构，即NASNet。从NASNet中提取出的图片特征一般均能转移到其他的计算机视觉问题。</p>
+<h2 id="Related-Work-2"><a href="#Related-Work-2" class="headerlink" title="Related Work"></a>Related Work</h2><blockquote>
+<p>The proposed method is related to previous work in hyperparameter optimization. The design of our search space took much inspiration from LSTMs, and Neural Architecture Search Cell. </p>
+</blockquote>
+<p>这篇论文和之前的一些超参数优化的工作相关，搜素空间的设计则来源于LSTM和NAS单元。</p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><blockquote>
+<p>The main contribution of this work is the design of a novel search space, such that the best architecture found on the CIFAR-10 dataset would scale to larger, higher- resolution image datasets across a range of computational settings.</p>
+<p>In our approach, the overall architectures of the convolutional nets are manually predetermined. They are composed of convolutional cells repeated many times where each convolutional cell has the same architecture, but different weights. To easily build scalable architectures for images of any size, we need two types of convolutional cells to serve two main functions when taking in a feature map as input: (1) convolutional cells that return a feature map of the same dimension, and (2) convolutional cells that return a feature map where the feature map height and width is reduced by a factor of two. We name the first type and second type of convolutional cells Normal Cell and Reduction Cell respectively. The Reduction and Normal Cell could have the same architecture, but we empirically found it beneficial to learn two separate architectures. </p>
+<p>In our search space, each cell receives as input two initial hidden states hi and hi−1 which are the outputs of two cells in previous two lower layers or the input image. The controller RNN recursively predicts the rest of the structure of the convolutional cell, given these two initial hidden states(Figure 3). </p>
+<p><img src="/images/ControllerConstructBlock.png" alt="ControllerConstructBlock"></p>
+</blockquote>
+<p>在这篇论文的方法中，全部的卷积网络的架构是人工预先定义的，这些架构是由重复多次的卷积核组成，这些卷积核具有相同的结构和不同的权重。为了能够方便地构建针对任意大小图片的可拓展架构，这里提供了两种类型的卷积核，对于输入的特征图片分别对应不同的功能。一种能返回同样维度的特征图谱，称为Normal核；一种能够让特征图谱的宽高减半，称为Reduction核。这两种卷积核可以有同样的架构，但经过实验发现，不同的架构效果更好。</p>
+<p>在搜索空间中，每一个卷积核以两个初始隐藏层状态作为两个输入参数，这两个参数要么是两个卷积核的输出，要么是输入的图像信息。控制器循环网络基于这两个参数递归预测卷积核剩下的结构。</p>
+<h2 id="Experiments-and-Results-1"><a href="#Experiments-and-Results-1" class="headerlink" title="Experiments and Results"></a>Experiments and Results</h2><blockquote>
+<p>As can be seen from the Table 1, a large NASNet-A model with cutout data augmentation [12] achieves a state-of-the-art error rate of 2.40% (averaged across 5 runs), which is slightly better than the previous best record of 2.56% by [12].</p>
+<p><img src="/images/performanceOfNAS.png" alt="PerformanceofNAS"></p>
+<p>We find that the learned convolutional cells are flexible across model scales achieving state-of-the-art performance across almost 2 orders of magnitude in computational budget.</p>
+<p>Increasing the spatial resolution of the input image results in the best reported, single model result for object detection of 43.1%, surpassing the best previous best by over 4.0% . NASNet provides superior, generic image features that may be transferred across other computer vision tasks.</p>
+<p>The best model identified with RL is significantly better than the best model found by RS by over 1% as measured by on CIFAR-10.</p>
+</blockquote>
+<p>这篇论文在CIFAR-10和ImageNet数据集上进行了图像分类实验，得出的结果比之前的一些先进的方法略优一些。另外还将在ImageNet上预训练好的NASNet网络移入faster-rcnn框架进行了物体检测实验，数据集是COCO数据集，结果表现性能也不错，说明了这个架构可以迁移来解决到其他计算机视觉问题。最后还用实验说明了，使用强化学习（RL）进行架构搜索得到的模型结果比随机搜索（RS）得到的模型结果表现好。</p>
+<h2 id="Conclusion-2"><a href="#Conclusion-2" class="headerlink" title="Conclusion"></a>Conclusion</h2><blockquote>
+<p>The learned architecture is quite flexible as it may be scaled in terms of computational cost and parameters to easily address a variety of problems.  The key insight in our approach is to design a search space that decouples the complexity of an architecture from the depth of a network. </p>
+<p>we demonstrate that we can use the resulting learned architecture to perform ImageNet classification with reduced computational budgets that outperform streamlined architectures targeted to mobile and embedded platforms.</p>
+</blockquote>
+<p>这篇论文提出的NASNet能够很灵活地可以扩展到计算机视觉的其他问题的解决上，而且NASNet搜索空间也从网络深度层面增加了搜索空间的复杂度。</p>
 
       
     </div>
@@ -889,7 +923,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Architecture-Search-with-Reinforcement-Learning"><span class="nav-number">1.</span> <span class="nav-text">Neural Architecture Search with Reinforcement Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">1.2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methods"><span class="nav-number">1.3.</span> <span class="nav-text">Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments-and-Results"><span class="nav-number">1.4.</span> <span class="nav-text">Experiments and Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Auto-DeepLab-Hierarchical-Neural-Architecture-Search-for-Semantic-Image-Segmentation"><span class="nav-number">2.</span> <span class="nav-text">Auto-DeepLab: Hierarchical Neural Architecture Search for Semantic Image Segmentation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-1"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work-1"><span class="nav-number">2.2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Architecture-Search-Space"><span class="nav-number">2.3.</span> <span class="nav-text">Architecture Search Space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methods-1"><span class="nav-number">2.4.</span> <span class="nav-text">Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experimental-Results"><span class="nav-number">2.5.</span> <span class="nav-text">Experimental Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-1"><span class="nav-number">2.6.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Architecture-Search-with-Reinforcement-Learning"><span class="nav-number">1.</span> <span class="nav-text">Neural Architecture Search with Reinforcement Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">1.2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methods"><span class="nav-number">1.3.</span> <span class="nav-text">Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments-and-Results"><span class="nav-number">1.4.</span> <span class="nav-text">Experiments and Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Auto-DeepLab-Hierarchical-Neural-Architecture-Search-for-Semantic-Image-Segmentation"><span class="nav-number">2.</span> <span class="nav-text">Auto-DeepLab: Hierarchical Neural Architecture Search for Semantic Image Segmentation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-1"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work-1"><span class="nav-number">2.2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Architecture-Search-Space"><span class="nav-number">2.3.</span> <span class="nav-text">Architecture Search Space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methods-1"><span class="nav-number">2.4.</span> <span class="nav-text">Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experimental-Results"><span class="nav-number">2.5.</span> <span class="nav-text">Experimental Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-1"><span class="nav-number">2.6.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Learning-Transferable-Architecture-for-Scalable-Image-Recognition"><span class="nav-number">3.</span> <span class="nav-text">Learning Transferable Architecture for Scalable Image Recognition</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-2"><span class="nav-number">3.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work-2"><span class="nav-number">3.2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">3.3.</span> <span class="nav-text">Method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments-and-Results-1"><span class="nav-number">3.4.</span> <span class="nav-text">Experiments and Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-2"><span class="nav-number">3.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -924,7 +958,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">53k</span>
+    <span title="站点总字数">58k</span>
   
 
   
@@ -935,7 +969,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">48 分钟</span>
+    <span title="站点阅读时长">53 分钟</span>
   
 </div>
 
