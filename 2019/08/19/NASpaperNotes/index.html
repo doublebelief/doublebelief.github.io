@@ -117,7 +117,9 @@
 <meta property="og:image" content="http://doublebelief.github.io/images/NetworkLevelSearchSpace.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/ControllerConstructBlock.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/performanceOfNAS.png">
-<meta property="og:updated_time" content="2019-08-21T07:30:17.163Z">
+<meta property="og:image" content="http://doublebelief.github.io/images/ComparationsTable2.png">
+<meta property="og:image" content="http://doublebelief.github.io/images/ComparationsTable5.png">
+<meta property="og:updated_time" content="2019-08-22T05:49:15.526Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NAS论文阅读笔记">
 <meta name="twitter:description" content="Neural Architecture Search with Reinforcement Learning Zoph, B., &amp;amp; Le, Q. V. (2016). Neural Architecture Search with Reinforcement Learning. 1–16. Retrieved from http://arxiv.org/abs/1611.01578  I">
@@ -430,7 +432,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-21 15:30:17" itemprop="dateModified" datetime="2019-08-21T15:30:17+08:00">2019-08-21</time>
+                <time title="修改时间：2019-08-22 13:49:15" itemprop="dateModified" datetime="2019-08-22T13:49:15+08:00">2019-08-22</time>
               </span>
             
           
@@ -473,7 +475,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">22k</span>
+              <span title="本文字数">27k</span>
             </span>
           
 
@@ -485,7 +487,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">20 分钟</span>
+              <span title="阅读时长">25 分钟</span>
             </span>
           
 
@@ -654,6 +656,54 @@
 <p>we demonstrate that we can use the resulting learned architecture to perform ImageNet classification with reduced computational budgets that outperform streamlined architectures targeted to mobile and embedded platforms.</p>
 </blockquote>
 <p>这篇论文提出的NASNet能够很灵活地可以扩展到计算机视觉的其他问题的解决上，而且NASNet搜索空间也从网络深度层面增加了搜索空间的复杂度。</p>
+<h1 id="Random-Search-and-Reproducibility-for-Neural-Architecture-Search"><a href="#Random-Search-and-Reproducibility-for-Neural-Architecture-Search" class="headerlink" title="Random Search and Reproducibility for Neural Architecture Search"></a>Random Search and Reproducibility for Neural Architecture Search</h1><blockquote>
+<p>Li, L., &amp; Talwalkar, A. (2019). Random Search and Reproducibility for Neural Architecture Search. 1–20. Retrieved from <a href="http://arxiv.org/abs/1902.07638" target="_blank" rel="noopener">http://arxiv.org/abs/1902.07638</a></p>
+</blockquote>
+<h2 id="Introduction-3"><a href="#Introduction-3" class="headerlink" title="Introduction"></a>Introduction</h2><blockquote>
+<p>We see three fundamental issues with the current state of NAS research: Inadequate Baselines. Complex Methods. Lack of Reproducibility.</p>
+<p>We help ground existing NAS results by providing a new perspective on the gap between traditional hy- perparameter optimization and leading NAS methods.</p>
+<p>We identify a small subset of NAS components that are sufficient for achieving good empirical results.</p>
+<p>We open-source all of the necessary code, random seeds, and documentation necessary to reproduce our experiments.</p>
+</blockquote>
+<p>这篇论文发现了现存的NAS研究里的三种基本的问题，分别是：基准不足，方法复杂，难以复现。</p>
+<p>这篇论文的贡献是：在传统的超参数调优方法和先进的NAS方法的比较中提出了新的看法；从NAS组件中选出了一部分足以实现好的实验效果的子集；开源了必要的代码，随机种子和复现实验时所需文档。</p>
+<h2 id="Related-Work-3"><a href="#Related-Work-3" class="headerlink" title="Related Work"></a>Related Work</h2><blockquote>
+<p>We choose to use a simple method combining random search with early-stopping called ASHA  to provide a competitive baseline for standard hyperparameter optimization.</p>
+<p>Our combination of random search with weight-sharing greatly simplifies the training routine and we identify key variables needed to achieve competitive results on both CIFAR-10 and PTB benchmarks.</p>
+<p>We follow DARTS and report the result of our random weight-sharing method across multiple trials; in fact, we go one step further and evaluate the broad reproducibility of our results with multiple sets of random seeds.</p>
+</blockquote>
+<p>在相关工作这一部分，这篇论文针对NAS研究里的三个问题分别列举了当前的一些研究工作，并给出了自己相应的解决方案。关于基准不足，这篇论文使用了结合早停的随机搜索的方法，这个方法给标准的超参数调优提供了一个有竞争力的基准；关于方法复杂，这篇论文使用了结合参数共享的随机搜索方法，进而简化了训练过程；关于难以复现，这篇论文给出了复现的相关文档和随机种子，并对结果的可复现性进行了评测。</p>
+<h2 id="Methodology"><a href="#Methodology" class="headerlink" title="Methodology"></a>Methodology</h2><blockquote>
+<p>Our algorithm is designed for an arbitrary search space with a DAG representation,  we use the same search spaces as that considered by DARTS [34] for the standard CIFAR-10 and PTB NAS benchmarks.</p>
+<p>There are a few key meta-hyperparameters that impact the behavior of our search algorithm: Training epochs.Batch size.Network size.Number of evaluated architectures. </p>
+<p>Since we train the shared weights using a single architecture at a time, we have the option of only loading the weights associated with the operations and edges that are activated into GPU memory. Hence, the memory footprint of our random search with weight-sharing can be reduced to that of a single model.</p>
+</blockquote>
+<p>这篇论文的随机搜索算法使用的搜索空间和DARTS在CIFAR-10和PTB上使用的搜索空间相同。另外，有一些元超参数能够影响这篇论文的搜索算法，比如训练次数，分块大小，网络大小和评估架构的数量。最后，因为这篇论文在训练共享权重时每次只使用一个架构，所以每次只需要将和架构相关的权重和操作加载进GPU存储里就行，因此这里的结合权重共享的随机搜索算法能够节省GPU开销。</p>
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><blockquote>
+<p>To evaluate the performance of random search with weight-sharing on these two benchmarks, we proceed in the same three stages:</p>
+<ul>
+<li>Stage 1: Perform architecture search for a cell block on a cheaper search task. </li>
+<li>Stage 2: Evaluate the best architecture from the first stage by retraining a larger, network formed from multiple cell blocks of the best found architecture from scratch. This stage is used to select the best architecture from multiple trials.</li>
+<li>Stage 3: Perform the full evaluation of the best found architecture from the second stage by either training for more epochs (PTB) or training with more seeds (CIFAR-10).</li>
+</ul>
+<p>For the PTB benchmark, we refer to the network used in the first stage as the proxy network and the network in the later stages as the proxyless network. We next present the final search results. We subsequently explore the impact of various meta-hyperparameters on random search with weight-sharing, and finally evaluate the reproducibility of various methods on this benchmark. Comparison with state-of-the-art NAS methods and manually designednetworks. Lower test perplexity is better on this benchmark.</p>
+<p><img src="/images/ComparationsTable2.png" alt="ComparationTable2"></p>
+<p>For the CIFAR-10 benchmark,the DAG considered for the convolutional cell has N = 4 search nodes and the operations considered include 3 × 3 and 5 × 5 separable convolutions, 3 × 3 and 5 × 5 dilated separable convolutions, 3 × 3 max pooling, and 3 × 3 average pooling, and zero.Comparison with state-of-the-art NAS methods and manually designed networks.</p>
+<p><img src="/images/ComparationsTable5.png" alt="ComparationTable5"></p>
+</blockquote>
+<p>为了评估在在PTB和CIFAR-10两个基准上权重共享的随机搜索的性能，这篇论文进行了相同的三个阶段:</p>
+<ul>
+<li>阶段1:在一个资源耗费较少的搜索任务上对一个单元格块执行架构搜索。</li>
+<li>阶段2:通过重新训练一个更大的网络来评估第一个阶段的最佳架构，这个网络由多个单元块组成，这些单元块是从零开始找到的最佳架构。这个阶段用于从多个测试中选择最佳架构。</li>
+<li>阶段3:对第二阶段发现的最佳体系结构进行全面评估，方法是进行更多epoch (PTB)的训练，或者进行更多seed (CIFAR-10)的训练。</li>
+</ul>
+<p>对在两个基准上分别进行上述三个阶段的操作，最终对比一些已有的NAS方法和人工调参，得到上述两个对比表，可以看出，在PTB基准上能够得到比其他方法较小的perplexity，而在CIFAR-10基准上能够得到相对较少的errors。</p>
+<h2 id="Conclusion-3"><a href="#Conclusion-3" class="headerlink" title="Conclusion"></a>Conclusion</h2><blockquote>
+<p>Better baselines that accurately quantify the performance gains of NAS methods.</p>
+<p>Ablation studies that isolate the impact of individual NAS components.</p>
+<p>Reproducible results that engender confidence and foster scientific progress.</p>
+</blockquote>
+<p>这篇论文成果有，提出了一个基本的基准（即论文中随机搜索的方法）来准确地衡量NAS方法的性能收益；对多个NAS组件的影响进行了探索；使NAS实验结果可复现，推动了科研进程。</p>
 
       
     </div>
@@ -923,7 +973,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Architecture-Search-with-Reinforcement-Learning"><span class="nav-number">1.</span> <span class="nav-text">Neural Architecture Search with Reinforcement Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">1.2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methods"><span class="nav-number">1.3.</span> <span class="nav-text">Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments-and-Results"><span class="nav-number">1.4.</span> <span class="nav-text">Experiments and Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Auto-DeepLab-Hierarchical-Neural-Architecture-Search-for-Semantic-Image-Segmentation"><span class="nav-number">2.</span> <span class="nav-text">Auto-DeepLab: Hierarchical Neural Architecture Search for Semantic Image Segmentation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-1"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work-1"><span class="nav-number">2.2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Architecture-Search-Space"><span class="nav-number">2.3.</span> <span class="nav-text">Architecture Search Space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methods-1"><span class="nav-number">2.4.</span> <span class="nav-text">Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experimental-Results"><span class="nav-number">2.5.</span> <span class="nav-text">Experimental Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-1"><span class="nav-number">2.6.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Learning-Transferable-Architecture-for-Scalable-Image-Recognition"><span class="nav-number">3.</span> <span class="nav-text">Learning Transferable Architecture for Scalable Image Recognition</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-2"><span class="nav-number">3.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work-2"><span class="nav-number">3.2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">3.3.</span> <span class="nav-text">Method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments-and-Results-1"><span class="nav-number">3.4.</span> <span class="nav-text">Experiments and Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-2"><span class="nav-number">3.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Architecture-Search-with-Reinforcement-Learning"><span class="nav-number">1.</span> <span class="nav-text">Neural Architecture Search with Reinforcement Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">1.2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methods"><span class="nav-number">1.3.</span> <span class="nav-text">Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments-and-Results"><span class="nav-number">1.4.</span> <span class="nav-text">Experiments and Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Auto-DeepLab-Hierarchical-Neural-Architecture-Search-for-Semantic-Image-Segmentation"><span class="nav-number">2.</span> <span class="nav-text">Auto-DeepLab: Hierarchical Neural Architecture Search for Semantic Image Segmentation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-1"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work-1"><span class="nav-number">2.2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Architecture-Search-Space"><span class="nav-number">2.3.</span> <span class="nav-text">Architecture Search Space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methods-1"><span class="nav-number">2.4.</span> <span class="nav-text">Methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experimental-Results"><span class="nav-number">2.5.</span> <span class="nav-text">Experimental Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-1"><span class="nav-number">2.6.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Learning-Transferable-Architecture-for-Scalable-Image-Recognition"><span class="nav-number">3.</span> <span class="nav-text">Learning Transferable Architecture for Scalable Image Recognition</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-2"><span class="nav-number">3.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work-2"><span class="nav-number">3.2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">3.3.</span> <span class="nav-text">Method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments-and-Results-1"><span class="nav-number">3.4.</span> <span class="nav-text">Experiments and Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-2"><span class="nav-number">3.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Random-Search-and-Reproducibility-for-Neural-Architecture-Search"><span class="nav-number">4.</span> <span class="nav-text">Random Search and Reproducibility for Neural Architecture Search</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-3"><span class="nav-number">4.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work-3"><span class="nav-number">4.2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methodology"><span class="nav-number">4.3.</span> <span class="nav-text">Methodology</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">4.4.</span> <span class="nav-text">Experiments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-3"><span class="nav-number">4.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -958,7 +1008,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">58k</span>
+    <span title="站点总字数">63k</span>
   
 
   
@@ -969,7 +1019,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">53 分钟</span>
+    <span title="站点阅读时长">57 分钟</span>
   
 </div>
 
