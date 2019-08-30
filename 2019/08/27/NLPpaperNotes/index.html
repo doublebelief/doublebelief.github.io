@@ -114,7 +114,11 @@
 <meta property="og:image" content="http://doublebelief.github.io/images/BertSquADRes.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/BertSWAGRes.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/ELMoComparation.png">
-<meta property="og:updated_time" content="2019-08-29T02:26:44.734Z">
+<meta property="og:image" content="http://doublebelief.github.io/images/fine-tune_figure2.png">
+<meta property="og:image" content="http://doublebelief.github.io/images/fine-tune_figure3.png">
+<meta property="og:image" content="http://doublebelief.github.io/images/fine-tune_figure4.png">
+<meta property="og:image" content="http://doublebelief.github.io/images/fine-tune_table1.png">
+<meta property="og:updated_time" content="2019-08-30T05:02:37.279Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP论文阅读笔记">
 <meta name="twitter:description" content="BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding Devlin, J., Chang, M.-W., Lee, K., &amp;amp; Toutanova, K. (2018). BERT: Pre-training of Deep Bidirectional Transformers fo">
@@ -427,7 +431,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-29 10:26:44" itemprop="dateModified" datetime="2019-08-29T10:26:44+08:00">2019-08-29</time>
+                <time title="修改时间：2019-08-30 13:02:37" itemprop="dateModified" datetime="2019-08-30T13:02:37+08:00">2019-08-30</time>
               </span>
             
           
@@ -470,7 +474,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">13k</span>
+              <span title="本文字数">19k</span>
             </span>
           
 
@@ -482,7 +486,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">12 分钟</span>
+              <span title="阅读时长">17 分钟</span>
             </span>
           
 
@@ -583,6 +587,43 @@
 <p>We have introduced a general approach for learning high-quality deep context-dependent representations from biLMs, and shown large improvements when applying ELMo to a broad range of NLP tasks. the biLM layers efficiently encode different types of syntactic and semantic information about words- in-context, and using all layers improves overall task performance.</p>
 </blockquote>
 <p>我们介绍了一种从biLMs学习的高质量深度上下文相关表示的通用方法ELMo，并将ELMo应用于广泛的NLP任务,相比之前的方法有很大改进。此外，biLM层可以有效地编码关于上下文中的单词的不同类型的语法和语义信息，并且使用所有层可以提高整体任务性能。</p>
+<h1 id="Fine-tuning-Pre-Trained-Transformer-Language-Models-to-Distantly-Supervised-Relation-Extraction"><a href="#Fine-tuning-Pre-Trained-Transformer-Language-Models-to-Distantly-Supervised-Relation-Extraction" class="headerlink" title="Fine-tuning Pre-Trained Transformer Language Models to Distantly Supervised Relation Extraction"></a>Fine-tuning Pre-Trained Transformer Language Models to Distantly Supervised Relation Extraction</h1><blockquote>
+<p>Alt, C., Hübner, M., &amp; Hennig, L. (2019). Fine-tuning Pre-Trained Transformer Language Models to Distantly Supervised Relation Extraction. Retrieved from <a href="http://arxiv.org/abs/1906.08646" target="_blank" rel="noopener">http://arxiv.org/abs/1906.08646</a></p>
+</blockquote>
+<h2 id="Introduction-2"><a href="#Introduction-2" class="headerlink" title="Introduction"></a>Introduction</h2><blockquote>
+<p>Relation extraction (RE), defined as the task of identifying the relationship between concepts mentioned in text, is a key component of many natural language processing applications. Current state-of-the-art RE methods try to address these challenges by applying multi-instance learning methods  and guiding the model by explicitly provided semantic and syntactic knowledge. However, we observe that these models are often biased towards recognizing a limited set of relations with high precision, while ignoring those in the long tail.</p>
+<p>In this paper, we introduce a Distantly Supervised Transformer for Relation Extraction (DISTRE). We extend the standard Transformer architecture by a selective attention mechanism to handle multi-instance learning and prediction, which allows us to fine-tune the pre-trained Transformer language model directly on the distantly supervised RE task. This minimizes explicit feature extraction and reduces the risk of error accumulation.  We selected the GPT as our language model because of its fine-tuning efficiency and reasonable hardware requirements, compared to e.g. LSTM- based language models or BERT.</p>
+</blockquote>
+<p>关系提取(RE)是许多自然语言处理应用程序的关键组成部分，它是指识别文本中提到的概念之间的关系。目前最先进的RE方法试图通过应用多实例学习方法来解决关系提取中遇到的问题，并通过显式提供语义和语法知识来指导模型。然而，这些方法往往倾向于识别一组有限的高精度关系，而忽略了长远的关系。</p>
+<p>这篇论文介绍了一种用于关系提取的远距离监督Transformer。通过选择性注意机制扩展了标准的Transformer体系结构，以处理多实例学习和预测，这样能够在远距离监督任务上直接微调预训练的Transformer语言模型。这使得显式特征提取最小化，并降低了错误积累的风险。这篇论文选择GPT作为语言模型，是因为和基于LSTM的语言模型或BERT相比，它的微调效率较高以及硬件需求合理。</p>
+<h2 id="Transformer-Language-Model"><a href="#Transformer-Language-Model" class="headerlink" title="Transformer Language Model"></a>Transformer Language Model</h2><blockquote>
+<p>The Transformer-Decoder (Liu et al., 2018a), shown in Figure 2, is a decoder-only variant of the original Transformer (Vaswani et al., 2017). Like the original Transformer, the model repeatedly encodes the given input representations over multiple layers (i.e., Transformer blocks), consisting of masked multi-head self-attention followed by a position-wise feedforward operation. In contrast to the original decoder blocks this version contains no form of unmasked self-attention since there are no encoder blocks.</p>
+<p><img src="/images/fine-tune_figure2.png" alt="fine-tune_figure2"></p>
+</blockquote>
+<p>Transformer译码器(Liu et al.， 2018a)，如图2所示，是原Transformer(Vaswani et al.， 2017)的纯译码器变体。与原始的转换器一样，该模型在多个层重复编码给出的输入表示，包括掩蔽的多头自注意机制，然后是一个位置明确的前馈操作。与原始解码器块相比，它不包含任何形式的非屏蔽自我注意，因为没有编码器块。</p>
+<h2 id="Multi-Instance-Learning-with-the-Transformer"><a href="#Multi-Instance-Learning-with-the-Transformer" class="headerlink" title="Multi-Instance Learning with the Transformer"></a>Multi-Instance Learning with the Transformer</h2><blockquote>
+<p>Our input representation (see Figure 3) encodes each sentence as a sequence of tokens. To make use of sub-word information, we tokenize the in- put text using byte pair encoding (BPE) (Sennrich et al., 2016). The BPE algorithm creates a vocabulary of sub-word tokens, starting with single characters. Then, the algorithm iteratively merges the most frequently co-occurring tokens into a new token until a predefined vocabulary size is reached. For each token, we obtain its input representation by summing over the corresponding token embed- ding and positional embedding</p>
+<p><img src="/images/fine-tune_figure3.png" alt="fine-tune_figure3"></p>
+</blockquote>
+<p>这篇论文的输入表示(参见图3)将每个句子编码为标记序列。为了利用子单词信息，使用字节对编码(BPE)对输入文本进行标记(Sennrich et al.， 2016)。BPE算法创建子单词标记的词汇表，以单个字符开始，然后，该算法迭代地将最频繁同时出现的标记合并到一个新的token中，直到达到预定义的词汇表大小。对于每个token，通过对相应的token嵌入和位置嵌入求和，得到其输入表示形式。</p>
+<h2 id="Experiment-Setup"><a href="#Experiment-Setup" class="headerlink" title="Experiment Setup"></a>Experiment Setup</h2><blockquote>
+<p>We run our experiments on the distantly supervised NYT10 dataset and use PCNN+ATTN (Lin et al., 2016) and RESIDE (Vashishth et al., 2018) as the state-of-the- art baselines. </p>
+<p>The piecewise convolutional neural network (PCNN) segments each input sentence into parts to the left, middle, and right of the entity pair, followed by convolutional encoding and selective attention to inform the relation classifier with a bag- level representation. RESIDE, on the other hand, uses a bidirectional gated recurrent unit (GRU) to encode the input sentence, followed by a graph convolutional neural network (GCN) to encode the explicitly provided dependency parse tree information. This is then combined with named entity type information to obtain a sentence representation that can be aggregated via selective attention and forwarded to the relation classifier.</p>
+<p>The NYT10 dataset by Riedel et al. (2010) is a standard benchmark for distantly supervised relation extraction.  Since pre-training is computationally expensive, and our main goal is to show its effectiveness by fine-tuning on the distantly supervised relation extraction task, we reuse the language model published by Radford et al. (2018) for our experiments.  During our experiments we found the hyperparameters for fine-tuning, reported in Radford et al. (2018), to be very effective. </p>
+</blockquote>
+<p>这篇论文在远程监督NYT10数据集上运行实验，使用PCNN+ATTN (Lin et al.， 2016)和RESIDE (Vashishth et al.， 2018)作为最先进的基准方法。</p>
+<p>分段卷积神经网络(PCNN)将每个输入语句分割成实体对的左、中、右三个部分，然后进行卷积编码和选择性注意，以袋式表示的形式通知关系分类器。另一方面，RESIDE使用双向门控循环单元(GRU)对输入语句进行编码，然后使用图卷积神经网络(GCN)对显式提供的依赖解析树信息进行编码。之后将其与命名实体类型信息相结合，获得一个句子表示形式，这个表示形式可以通过选择性注意进行聚合并转发给关系分类器。</p>
+<p>NYT10数据集是用于远程监督关系提取的标准数据集。由于预训练的计算开销很大，而主要目标是通过对远程监督关系提取任务进行微调来显示其有效性，因此这篇论文在实验中重用了Radford等人(2018)发表的语言模型。在实验中，这篇论文发现Radford等人(2018)报道的微调超参数非常有效。</p>
+<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><blockquote>
+<p>Table 1 shows the results of our model on the held-out dataset. DISTRE with selective attention achieves a new state-of-the-art AUC value of 0.422. The precision-recall curve in Figure 4 shows that it outperforms RESIDE and PCNN+ATT at higher recall levels, while precision is lower for top predicted relation instances.</p>
+<p><img src="/images/fine-tune_figure4.png" alt="fine-tune_figure4"></p>
+<p><img src="/images/fine-tune_table1.png" alt="fine-tune_table1"></p>
+</blockquote>
+<p>表1显示了模型在helout数据集上的结果,具有选择性注意的DISTRE达到了最新的AUC值0.422。图4中的precision-recall曲线显示，在较高的recall级别上，它的性能优于RESIDE 和PCNN+ATT，而对于顶级预测关系实例，它的精度较低。</p>
+<h2 id="Conclusion-2"><a href="#Conclusion-2" class="headerlink" title="Conclusion"></a>Conclusion</h2><blockquote>
+<p>We proposed DISTRE, a Transformer which we extended with an attentive selection mechanism for the multi-instance learning scenario, common in distantly supervised relation extraction. While DISTRE achieves a lower precision for the 300 top ranked predictions, we observe a state-of-the-art AUC (Area Under Curve) and an overall more balanced performance.</p>
+</blockquote>
+<p>这篇论文提出了一种用于多实例学习场景的Transformer ，它是一种常用的远程监督关系提取方法。虽然对于300个排名靠前的预测，新版本的精度较低，但它有最先进的AUC和整体更平衡的性能。</p>
 
       
     </div>
@@ -854,7 +895,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding"><span class="nav-number">1.</span> <span class="nav-text">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">1.2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BERT"><span class="nav-number">1.3.</span> <span class="nav-text">BERT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">1.4.</span> <span class="nav-text">Experiments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ablation-Studies"><span class="nav-number">1.5.</span> <span class="nav-text">Ablation Studies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.6.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Deep-contextualized-word-representations"><span class="nav-number">2.</span> <span class="nav-text">Deep contextualized word representations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-1"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work-1"><span class="nav-number">2.2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ELMo-Embeddings-from-Language-Models"><span class="nav-number">2.3.</span> <span class="nav-text">ELMo: Embeddings from Language Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Evaluation"><span class="nav-number">2.4.</span> <span class="nav-text">Evaluation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Analysis"><span class="nav-number">2.5.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-1"><span class="nav-number">2.6.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding"><span class="nav-number">1.</span> <span class="nav-text">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">1.2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BERT"><span class="nav-number">1.3.</span> <span class="nav-text">BERT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">1.4.</span> <span class="nav-text">Experiments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ablation-Studies"><span class="nav-number">1.5.</span> <span class="nav-text">Ablation Studies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.6.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Deep-contextualized-word-representations"><span class="nav-number">2.</span> <span class="nav-text">Deep contextualized word representations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-1"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work-1"><span class="nav-number">2.2.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ELMo-Embeddings-from-Language-Models"><span class="nav-number">2.3.</span> <span class="nav-text">ELMo: Embeddings from Language Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Evaluation"><span class="nav-number">2.4.</span> <span class="nav-text">Evaluation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Analysis"><span class="nav-number">2.5.</span> <span class="nav-text">Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-1"><span class="nav-number">2.6.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fine-tuning-Pre-Trained-Transformer-Language-Models-to-Distantly-Supervised-Relation-Extraction"><span class="nav-number">3.</span> <span class="nav-text">Fine-tuning Pre-Trained Transformer Language Models to Distantly Supervised Relation Extraction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-2"><span class="nav-number">3.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transformer-Language-Model"><span class="nav-number">3.2.</span> <span class="nav-text">Transformer Language Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-Instance-Learning-with-the-Transformer"><span class="nav-number">3.3.</span> <span class="nav-text">Multi-Instance Learning with the Transformer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiment-Setup"><span class="nav-number">3.4.</span> <span class="nav-text">Experiment Setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Results"><span class="nav-number">3.5.</span> <span class="nav-text">Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-2"><span class="nav-number">3.6.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -889,7 +930,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">79k</span>
+    <span title="站点总字数">85k</span>
   
 
   
@@ -900,7 +941,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">1:12</span>
+    <span title="站点阅读时长">1:17</span>
   
 </div>
 
