@@ -118,7 +118,11 @@
 <meta property="og:image" content="http://doublebelief.github.io/images/TransformerXLfigure2.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/AttentionFigure1.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/AttentionTable1.png">
-<meta property="og:updated_time" content="2019-09-04T06:42:19.661Z">
+<meta property="og:image" content="http://doublebelief.github.io/images/GlobalAttention.png">
+<meta property="og:image" content="http://doublebelief.github.io/images/LocalAttention.png">
+<meta property="og:image" content="http://doublebelief.github.io/images/AttentionOperation1.png">
+<meta property="og:image" content="http://doublebelief.github.io/images/Attention2Table1.png">
+<meta property="og:updated_time" content="2019-09-05T03:15:45.677Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP论文阅读笔记（Ⅱ）">
 <meta name="twitter:description" content="Attention is all you need Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., … Polosukhin, I. (2017). Attention is all you need. Advances in Neural Information Processing Sy">
@@ -431,7 +435,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-04 14:42:19" itemprop="dateModified" datetime="2019-09-04T14:42:19+08:00">2019-09-04</time>
+                <time title="修改时间：2019-09-05 11:15:45" itemprop="dateModified" datetime="2019-09-05T11:15:45+08:00">2019-09-05</time>
               </span>
             
           
@@ -474,7 +478,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">15k</span>
+              <span title="本文字数">19k</span>
             </span>
           
 
@@ -486,7 +490,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">14 分钟</span>
+              <span title="阅读时长">17 分钟</span>
             </span>
           
 
@@ -619,6 +623,39 @@
 <p>In this paper, we proposed a novel architecture that addresses this issue. We extended the basic encoder–decoder by letting a model (soft-)search for a set of input words, or their annotations computed by an encoder, when generating each target word. We tested the proposed model, called RNNsearch, on the task of English-to-French translation. The experiment revealed that the proposed RNNsearch outperforms the conventional encoder–decoder model (RNNenc) significantly, regardless of the sentence length and that it is much more robust to the length of a source sentence. </p>
 </blockquote>
 <p>这篇论文扩展了基本的编码器解码器结构，在生成每个目标单词时，让模型搜索一组输入单词或者由编码器计算它们的注释。这种结构在英法翻译任务中实现被称为RNNsearch的模型。实验结果表明，无论句子长度如何，该算法都比传统的编译码器模型(RNNenc)有明显的性能优势，并且对源语句的长度具有更强的鲁棒性</p>
+<h1 id="Effective-Approaches-to-Attention-based-Neural-Machine-Translation"><a href="#Effective-Approaches-to-Attention-based-Neural-Machine-Translation" class="headerlink" title="Effective Approaches to Attention-based Neural Machine Translation"></a>Effective Approaches to Attention-based Neural Machine Translation</h1><blockquote>
+<p>Luong, M. T., Pham, H., &amp; Manning, C. D. (2015). Effective approaches to attention-based neural machine translation. Conference Proceedings - EMNLP 2015: Conference on Empirical Methods in Natural Language Processing, 1412–1421. Retrieved from <a href="https://arxiv.org/pdf/1508.04025.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1508.04025.pdf</a></p>
+</blockquote>
+<h2 id="Introduction-3"><a href="#Introduction-3" class="headerlink" title="Introduction"></a>Introduction</h2><blockquote>
+<p>This paper examines two simple and effective classes of attentional mechanism: a global approach which always attends to all source words and a local one that only looks at a subset of source words at a time. Our ensemble model using different attention architectures yields a new state-of-the-art result in the WMT’15 English to German translation task with 25.9 BLEU points, an improvement of 1.0 BLEU points over the existing best system backed by NMT and an n-gram re-ranker.</p>
+</blockquote>
+<p>这篇论文研究了两种简单而有效的注意机制：一种是全局方法，它始终关注所有源单词；另一种是局部方法，它一次只关注一个源单词子集。这篇论文的集成模型使用了不同的注意力架构，在WMT ‘ 15英德翻译任务中产生了一个新的最先进的结果，拥有25.9个BLEU点，比现有的由NMT和一个n-gram reranker支持的最佳系统提高了1.0个BLEU点。</p>
+<h2 id="Neural-Machine-Translation"><a href="#Neural-Machine-Translation" class="headerlink" title="Neural Machine Translation"></a>Neural Machine Translation</h2><blockquote>
+<p>A neural machine translation system is a neural network that directly models the conditional probability p(y|x) of translating a source sentence, x1, . . . , xn, to a target sentence, y1, . . . , ym.  A basic form of NMT consists of two components: (a) an encoder which computes a representation s for each source sentence and (b) a decoder which generates one target word at a time.</p>
+</blockquote>
+<p>神经机器翻译系统是直接模拟源句翻译的条件概率p(y|x)的神经网络。NMT的基本形式由两个组件组成：(A)一个编码器，它为每个源语句计算一个表示形式；(b)一个解码器，每次生成一个目标单词。</p>
+<h2 id="Attention-based-Models"><a href="#Attention-based-Models" class="headerlink" title="Attention-based Models"></a>Attention-based Models</h2><blockquote>
+<p>Our various attention-based models are classified into two broad categories, global and local. These classes differ in terms of whether the “attention” is placed on all source positions or on only a few source positions. We illustrate these two model types in Figure 2 and 3 respectively.</p>
+<p>A global context vector ct is then computed as the weighted aver- age, according to at, over all the source states.</p>
+<p>Unlike the global approach, the local alignment vector at is now fixed-dimensional, i.e., ∈ R2D+1. We consider two variants of the model as below. </p>
+<p>Monotonic alignment (local-m) – we simply set pt = t assuming that source and target sequences are roughly monotonically aligned.</p>
+<p>Predictive alignment (local-p) – instead of assuming monotonic alignments, our model predicts an aligned position as follows: pt = S · sigmoid(v⊤ p tanh(Wpht))</p>
+<p><img src="/images/GlobalAttention.png" alt="GlobalAttention"></p>
+<p><img src="/images/LocalAttention.png" alt="LocalAttention"></p>
+</blockquote>
+<p>这篇论文的各种基于注意力的模型分为两大类，全局和局部。这两类的区别在于是将“注意力”放在所有源位置上，还是只放在少数源位置上。图2和图3分别演示了这两种模型类型。流程上来理解，全局和局部注意力机制唯一的不同就是生成语境向量的方法，接下来的步骤都是一样的。</p>
+<p>全局注意力机制与soft_attention类似，但不同的是，全局注意力机制中的对齐向量的计算更简单，直接由当前隐状态和每一个输入隐状态计算得出权重，但全局注意力机制需要考虑所有的输入状态，所以计算开销较大。</p>
+<p>为了解决全局注意力机制的计算开销较大问题，引入了局部注意力机制。局部注意力机制只会关注部分输入状态，论文中也给出了2种对齐的办法：1 就是直接认为pt=t，即认为source和target大致相当，剩下的权值计算方式和全局一致；2 就是根据以下公式计算：</p>
+<p><img src="/images/AttentionOperation1.png" alt="AttentionOperation1"></p>
+<h2 id="Experiments-and-Analysis"><a href="#Experiments-and-Analysis" class="headerlink" title="Experiments and Analysis"></a>Experiments and Analysis</h2><blockquote>
+<p>We evaluate the effectiveness of our models on the WMT translation tasks between English and German in both directions. new- stest2013 (3000 sentences) is used as a development set to select our hyperparameters. We report translation quality using two types of BLEU: (a) tokenized12 BLEU to be comparable with existing NMT work and (b) NIST13 BLEU to be comparable with WMT results.</p>
+<p><img src="/images/Attention2Table1.png" alt="Attention2Table1"></p>
+</blockquote>
+<p>这篇论文评估了所提出模型在英语和德语双向翻译任务中的有效性。使用new- stest2013(3000句话)作为开发集来选择超参数，使用两种类型的BLEU报告翻译质量:(a)标记12 BLEU与现有的NMT工作相比较，(b) NIST13 BLEU与WMT结果相比较。</p>
+<h2 id="Conclusion-2"><a href="#Conclusion-2" class="headerlink" title="Conclusion"></a>Conclusion</h2><blockquote>
+<p>In this paper, we propose two simple and effective attentional mechanisms for neural machine translation: the global approach which always looks at all source positions and the local one that only attends to a subset of source positions at a time. We test the effectiveness of our models in the WMT translation tasks between English and German in both directions. For the English to German translation direction, our ensemble model has established new state-of-the-art results for both WMT’14 and WMT’15, outperforming existing best systems, backed by NMT models and n-gram LM re-rankers, by more than 1.0 BLEU.</p>
+</blockquote>
+<p>这篇论文提出了两种简单而有效的神经机器翻译注意机制：全局方法总是关注所有的源位置；局部方法每次只关注源位置的子集。而所提出的集成模型，在WMT ‘ 15英德翻译任务中产生了一个新的最先进的结果。</p>
 
       
     </div>
@@ -890,7 +927,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention-is-all-you-need"><span class="nav-number">1.</span> <span class="nav-text">Attention is all you need</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Architecture"><span class="nav-number">1.2.</span> <span class="nav-text">Model Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-Self-Attention"><span class="nav-number">1.3.</span> <span class="nav-text">Why Self-Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Training-and-Results"><span class="nav-number">1.4.</span> <span class="nav-text">Training and Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Transformer-XL-Attentive-Language-Models-Beyond-a-Fixed-Length-Context"><span class="nav-number">2.</span> <span class="nav-text">Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-1"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">2.2.</span> <span class="nav-text">Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">2.3.</span> <span class="nav-text">Experiments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusions"><span class="nav-number">2.4.</span> <span class="nav-text">Conclusions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Machine-Translation-by-Jointly-Learning-to-Align-and-Translate"><span class="nav-number">3.</span> <span class="nav-text">Neural Machine Translation by Jointly Learning to Align and Translate</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-2"><span class="nav-number">3.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Background-Neural-Machine-Translation"><span class="nav-number">3.2.</span> <span class="nav-text">Background: Neural Machine Translation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning-to-Align-and-Translate"><span class="nav-number">3.3.</span> <span class="nav-text">Learning to Align and Translate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiment-and-Results"><span class="nav-number">3.4.</span> <span class="nav-text">Experiment and Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-1"><span class="nav-number">3.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention-is-all-you-need"><span class="nav-number">1.</span> <span class="nav-text">Attention is all you need</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Architecture"><span class="nav-number">1.2.</span> <span class="nav-text">Model Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-Self-Attention"><span class="nav-number">1.3.</span> <span class="nav-text">Why Self-Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Training-and-Results"><span class="nav-number">1.4.</span> <span class="nav-text">Training and Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Transformer-XL-Attentive-Language-Models-Beyond-a-Fixed-Length-Context"><span class="nav-number">2.</span> <span class="nav-text">Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-1"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">2.2.</span> <span class="nav-text">Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">2.3.</span> <span class="nav-text">Experiments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusions"><span class="nav-number">2.4.</span> <span class="nav-text">Conclusions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Machine-Translation-by-Jointly-Learning-to-Align-and-Translate"><span class="nav-number">3.</span> <span class="nav-text">Neural Machine Translation by Jointly Learning to Align and Translate</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-2"><span class="nav-number">3.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Background-Neural-Machine-Translation"><span class="nav-number">3.2.</span> <span class="nav-text">Background: Neural Machine Translation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning-to-Align-and-Translate"><span class="nav-number">3.3.</span> <span class="nav-text">Learning to Align and Translate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiment-and-Results"><span class="nav-number">3.4.</span> <span class="nav-text">Experiment and Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-1"><span class="nav-number">3.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Effective-Approaches-to-Attention-based-Neural-Machine-Translation"><span class="nav-number">4.</span> <span class="nav-text">Effective Approaches to Attention-based Neural Machine Translation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-3"><span class="nav-number">4.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Neural-Machine-Translation"><span class="nav-number">4.2.</span> <span class="nav-text">Neural Machine Translation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attention-based-Models"><span class="nav-number">4.3.</span> <span class="nav-text">Attention-based Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments-and-Analysis"><span class="nav-number">4.4.</span> <span class="nav-text">Experiments and Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-2"><span class="nav-number">4.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -925,7 +962,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">100k</span>
+    <span title="站点总字数">104k</span>
   
 
   
@@ -936,7 +973,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">1:31</span>
+    <span title="站点阅读时长">1:35</span>
   
 </div>
 
