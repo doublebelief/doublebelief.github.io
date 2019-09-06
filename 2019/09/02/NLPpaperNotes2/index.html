@@ -122,7 +122,7 @@
 <meta property="og:image" content="http://doublebelief.github.io/images/LocalAttention.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/AttentionOperation1.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/Attention2Table1.png">
-<meta property="og:updated_time" content="2019-09-05T03:15:45.677Z">
+<meta property="og:updated_time" content="2019-09-06T02:15:05.762Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP论文阅读笔记（Ⅱ）">
 <meta name="twitter:description" content="Attention is all you need Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., … Polosukhin, I. (2017). Attention is all you need. Advances in Neural Information Processing Sy">
@@ -435,7 +435,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-05 11:15:45" itemprop="dateModified" datetime="2019-09-05T11:15:45+08:00">2019-09-05</time>
+                <time title="修改时间：2019-09-06 10:15:05" itemprop="dateModified" datetime="2019-09-06T10:15:05+08:00">2019-09-06</time>
               </span>
             
           
@@ -478,7 +478,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">19k</span>
+              <span title="本文字数">22k</span>
             </span>
           
 
@@ -490,7 +490,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">17 分钟</span>
+              <span title="阅读时长">20 分钟</span>
             </span>
           
 
@@ -656,6 +656,35 @@
 <p>In this paper, we propose two simple and effective attentional mechanisms for neural machine translation: the global approach which always looks at all source positions and the local one that only attends to a subset of source positions at a time. We test the effectiveness of our models in the WMT translation tasks between English and German in both directions. For the English to German translation direction, our ensemble model has established new state-of-the-art results for both WMT’14 and WMT’15, outperforming existing best systems, backed by NMT models and n-gram LM re-rankers, by more than 1.0 BLEU.</p>
 </blockquote>
 <p>这篇论文提出了两种简单而有效的神经机器翻译注意机制：全局方法总是关注所有的源位置；局部方法每次只关注源位置的子集。而所提出的集成模型，在WMT ‘ 15英德翻译任务中产生了一个新的最先进的结果。</p>
+<h1 id="Pre-Training-with-Whole-Word-Masking-for-Chinese-BERT"><a href="#Pre-Training-with-Whole-Word-Masking-for-Chinese-BERT" class="headerlink" title="Pre-Training with Whole Word Masking for Chinese BERT"></a>Pre-Training with Whole Word Masking for Chinese BERT</h1><blockquote>
+<p>Cui, Y., Che, W., Liu, T., Qin, B., Yang, Z., Wang, S., &amp; Hu, G. (2019). Pre-Training with Whole Word Masking for Chinese BERT. Retrieved from <a href="http://arxiv.org/abs/1906.08101" target="_blank" rel="noopener">http://arxiv.org/abs/1906.08101</a></p>
+</blockquote>
+<h2 id="Introduction-4"><a href="#Introduction-4" class="headerlink" title="Introduction"></a>Introduction</h2><blockquote>
+<p>In this technical report, we adapt whole word masking in Chinese text, that masking the whole word instead of masking Chinese characters, which could bring another challenge in Masked Language Model (MLM) pre-training task.</p>
+<p>The contributions of this technical report are listed as follows.<br>• We adapt the whole word masking in Chinese BERT and release the pre-trained model for the community.<br>• Extensive experiments are carried out to better demonstrate the effectiveness of BERT/BERT-wwm/ERNIE.<br>• Several useful tips are provided on using these pre-trained models on Chinese text.</p>
+</blockquote>
+<p>这篇论文采用了中文文本的全字掩蔽，即用全字掩蔽代替汉字掩蔽，这可能会给掩蔽语言模型(MLM)的预训练任务带来新的挑战。</p>
+<h2 id="Chinese-BERT-with-Whole-Word-Masking"><a href="#Chinese-BERT-with-Whole-Word-Masking" class="headerlink" title="Chinese BERT with Whole Word Masking"></a>Chinese BERT with Whole Word Masking</h2><blockquote>
+<p>We downloaded the latest Wikipedia dump5, and pre-processed with WikiExtractor.py as suggested by Devlin et al. (2019), resulting 1,307 extracted files. Note that, we use both Simplified and Traditional Chinese in this dump.</p>
+<p>We assume the whole word masking is a remedy for the BERT to know the word boundary and should be a ‘patch’ rather than a brand new model. Under this assumption, we did NOT train our model from scratch but from the official BERT-base (Chinese).</p>
+</blockquote>
+<p>这篇论文使用了最新的Wikipedia dump5，并按照Devlin等人(2019)的建议使用WikiExtractor.py进行预处理，得到了1307个提取文件。另外，这篇论文同时使用了这个dump中简体中文和繁体中文。</p>
+<p>这篇论文假设整个单词屏蔽是Bert单词边界的一种补救方法，应该是一个“补丁”，而不是一个全新的模型。基于这个假设，模型的训练并不是从零开始，而是从官方的基准(中文)开始的。</p>
+<h2 id="Experiments-1"><a href="#Experiments-1" class="headerlink" title="Experiments"></a>Experiments</h2><blockquote>
+<p>We adopt additional datasets for testing their performance in a wider range.<br>• Machine Reading Comprehension (MRC): CMRC 2018 (Cui et al., 2018), DRCD (Shao et al., 2018), CJRC10<br>• Named Entity Recognition (NER): People Daily11, MSRA-NER (SIGHAN 2006) (Levow, 2006)<br>• Natural Language Inference (NLI): XNLI (Conneau et al., 2018)</p>
+<p>• Sentiment Classification (SC): ChnSentiCorp12, Sina Weibo13<br>• Sentence Pair Matching (SPM): LCQMC (Liu et al., 2018), BQ Corpus (Chen et al., 2018)<br>• Document Classification (DC): THUCNews (Li and Sun, 2007)</p>
+</blockquote>
+<p>这篇论文采用了额外的数据集在更大范围内测试它们的性能：</p>
+<p>•机器阅读理解(MRC): CMRC 2018 ，CJRC10</p>
+<p>•命名实体识别(NER): People Daily , MSRA-NER  </p>
+<p>•自然语言推理(NLI): XNLI  </p>
+<p>•情感分类(SC): ChnSentiCorp，新浪微博</p>
+<p>•句子配对(SPM)：LCQMC  ， BQ语料库 </p>
+<p>•文档分类(DC): THUCNews </p>
+<h2 id="Conclusion-3"><a href="#Conclusion-3" class="headerlink" title="Conclusion"></a>Conclusion</h2><blockquote>
+<p>In this technical report, we utilize the whole word masking strategy for Chinese BERT and release the pre-trained model for the research community. The experimental results indicate that the pro- posed pre-trained model yields substantial improvements on various NLP tasks, compared to BERT and ERNIE.</p>
+</blockquote>
+<p>这篇论文使用了中文伯特的全字屏蔽策略，并在研究社区发布了预先训练的模型。实验结果表明，与BERT和ERNIE相比，这篇论文提出的预训练模型在不同的NLP任务上有明显的改进。</p>
 
       
     </div>
@@ -927,7 +956,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention-is-all-you-need"><span class="nav-number">1.</span> <span class="nav-text">Attention is all you need</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Architecture"><span class="nav-number">1.2.</span> <span class="nav-text">Model Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-Self-Attention"><span class="nav-number">1.3.</span> <span class="nav-text">Why Self-Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Training-and-Results"><span class="nav-number">1.4.</span> <span class="nav-text">Training and Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Transformer-XL-Attentive-Language-Models-Beyond-a-Fixed-Length-Context"><span class="nav-number">2.</span> <span class="nav-text">Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-1"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">2.2.</span> <span class="nav-text">Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">2.3.</span> <span class="nav-text">Experiments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusions"><span class="nav-number">2.4.</span> <span class="nav-text">Conclusions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Machine-Translation-by-Jointly-Learning-to-Align-and-Translate"><span class="nav-number">3.</span> <span class="nav-text">Neural Machine Translation by Jointly Learning to Align and Translate</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-2"><span class="nav-number">3.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Background-Neural-Machine-Translation"><span class="nav-number">3.2.</span> <span class="nav-text">Background: Neural Machine Translation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning-to-Align-and-Translate"><span class="nav-number">3.3.</span> <span class="nav-text">Learning to Align and Translate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiment-and-Results"><span class="nav-number">3.4.</span> <span class="nav-text">Experiment and Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-1"><span class="nav-number">3.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Effective-Approaches-to-Attention-based-Neural-Machine-Translation"><span class="nav-number">4.</span> <span class="nav-text">Effective Approaches to Attention-based Neural Machine Translation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-3"><span class="nav-number">4.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Neural-Machine-Translation"><span class="nav-number">4.2.</span> <span class="nav-text">Neural Machine Translation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attention-based-Models"><span class="nav-number">4.3.</span> <span class="nav-text">Attention-based Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments-and-Analysis"><span class="nav-number">4.4.</span> <span class="nav-text">Experiments and Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-2"><span class="nav-number">4.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention-is-all-you-need"><span class="nav-number">1.</span> <span class="nav-text">Attention is all you need</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Architecture"><span class="nav-number">1.2.</span> <span class="nav-text">Model Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-Self-Attention"><span class="nav-number">1.3.</span> <span class="nav-text">Why Self-Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Training-and-Results"><span class="nav-number">1.4.</span> <span class="nav-text">Training and Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Transformer-XL-Attentive-Language-Models-Beyond-a-Fixed-Length-Context"><span class="nav-number">2.</span> <span class="nav-text">Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-1"><span class="nav-number">2.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">2.2.</span> <span class="nav-text">Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">2.3.</span> <span class="nav-text">Experiments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusions"><span class="nav-number">2.4.</span> <span class="nav-text">Conclusions</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Machine-Translation-by-Jointly-Learning-to-Align-and-Translate"><span class="nav-number">3.</span> <span class="nav-text">Neural Machine Translation by Jointly Learning to Align and Translate</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-2"><span class="nav-number">3.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Background-Neural-Machine-Translation"><span class="nav-number">3.2.</span> <span class="nav-text">Background: Neural Machine Translation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning-to-Align-and-Translate"><span class="nav-number">3.3.</span> <span class="nav-text">Learning to Align and Translate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiment-and-Results"><span class="nav-number">3.4.</span> <span class="nav-text">Experiment and Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-1"><span class="nav-number">3.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Effective-Approaches-to-Attention-based-Neural-Machine-Translation"><span class="nav-number">4.</span> <span class="nav-text">Effective Approaches to Attention-based Neural Machine Translation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-3"><span class="nav-number">4.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Neural-Machine-Translation"><span class="nav-number">4.2.</span> <span class="nav-text">Neural Machine Translation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attention-based-Models"><span class="nav-number">4.3.</span> <span class="nav-text">Attention-based Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments-and-Analysis"><span class="nav-number">4.4.</span> <span class="nav-text">Experiments and Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-2"><span class="nav-number">4.5.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pre-Training-with-Whole-Word-Masking-for-Chinese-BERT"><span class="nav-number">5.</span> <span class="nav-text">Pre-Training with Whole Word Masking for Chinese BERT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-4"><span class="nav-number">5.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chinese-BERT-with-Whole-Word-Masking"><span class="nav-number">5.2.</span> <span class="nav-text">Chinese BERT with Whole Word Masking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments-1"><span class="nav-number">5.3.</span> <span class="nav-text">Experiments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-3"><span class="nav-number">5.4.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -962,7 +991,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">104k</span>
+    <span title="站点总字数">107k</span>
   
 
   
@@ -973,7 +1002,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">1:35</span>
+    <span title="站点阅读时长">1:37</span>
   
 </div>
 
