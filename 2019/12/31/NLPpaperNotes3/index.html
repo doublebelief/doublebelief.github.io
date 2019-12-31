@@ -111,6 +111,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://doublebelief.github.io/images/1570610443155.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/1570611605740.png">
+<meta property="og:image" content="http://doublebelief.github.io/images/image-20191231162145870.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/1570616182155.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/1570771034353.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/1571124771132.png">
@@ -120,7 +121,7 @@
 <meta property="og:image" content="http://doublebelief.github.io/images/TransformerTable2.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/image-20191029104112395.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/image-20191029104527986.png">
-<meta property="og:updated_time" content="2019-12-31T08:13:09.353Z">
+<meta property="og:updated_time" content="2019-12-31T08:22:03.108Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP论文阅读笔记（Ⅲ）">
 <meta name="twitter:description" content="GraphRel: Modeling Text as Relational Graphs for Joint Entity and Relation Extraction Fu, T.-J., Li, P.-H., &amp;amp; Ma, W.-Y. (2019). GraphRel: Modeling Text as Relational Graphs for Joint Entity and Re">
@@ -418,7 +419,7 @@
                 
               
 
-              <time title="创建时间：2019-12-31 16:04:32 / 修改时间：16:13:09" itemprop="dateCreated datePublished" datetime="2019-12-31T16:04:32+08:00">2019-12-31</time>
+              <time title="创建时间：2019-12-31 16:04:32 / 修改时间：16:22:03" itemprop="dateCreated datePublished" datetime="2019-12-31T16:04:32+08:00">2019-12-31</time>
             </span>
           
 
@@ -501,8 +502,7 @@
 <p>Fu, T.-J., Li, P.-H., &amp; Ma, W.-Y. (2019). GraphRel: Modeling Text as Relational Graphs for Joint Entity and Relation Extraction. 1409–1418. <a href="https://doi.org/10.18653/v1/p19-1136" target="_blank" rel="noopener">https://doi.org/10.18653/v1/p19-1136</a></p>
 </blockquote>
 <hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这篇论文提出了一个新的模型GraphRel，这个模型是一个端到端的关系提取模型，使用了图卷积网络来抽取命名实体和关系。和之前的模型相比，GraphRel考虑了命名实体和关系之间的相互作用，通过一个关系权重的图卷积网络来更好地提取关系。另外，GraphRel也考虑了线性和依赖结构，以及文本单词对之间的隐式特征。这篇论文在NYT和WebNLG两个公开数据集上对GraphRel进行了评估，结果显示GraphRel具有很高的准确率和召回率，另外F1值也达到了一个新的高度。</span><br></pre></td></tr></table></figure>
-
+<p>这篇论文提出了一个新的模型GraphRel，这个模型是一个端到端的关系提取模型，使用了图卷积网络来抽取命名实体和关系。和之前的模型相比，GraphRel考虑了命名实体和关系之间的相互作用，通过一个关系权重的图卷积网络来更好地提取关系。另外，GraphRel也考虑了线性和依赖结构，以及文本单词对之间的隐式特征。这篇论文在NYT和WebNLG两个公开数据集上对GraphRel进行了评估，结果显示GraphRel具有很高的准确率和召回率，另外F1值也达到了一个新的高度。</p>
 <hr>
 <ul>
 <li><p><strong>论文背景</strong></p>
@@ -517,15 +517,20 @@
 <ul>
 <li><p>单词实体：模型根据单词在一层LSTM的特征预测对单词实体进行预测，并使用离散损失函数来训练这些结果。</p>
 </li>
-<li><p>关系抽取：模型首先去除了所有依赖边，之后对所有单词对进行预测，针对每一个关系，模型学习了权重矩阵W并计算了关系可能性得分S，之后在对每一个得分应用SoftMax函数，得到每一个关系的概率P，进而确定关系是否有效。<br>$$<br>S_{(w1,r,w2)}=W^3_rReLU(W_r^1h_{w1}⊕W_r^2h_{w2})<br>$$</p>
+<li><p>关系抽取：模型首先去除了所有依赖边，之后对所有单词对进行预测，针对每一个关系，模型学习了权重矩阵W并计算了关系可能性得分S，之后在对每一个得分应用SoftMax函数，得到每一个关系的概率P，进而确定关系是否有效。</p>
+<p><img src="/images/image-20191231162145870.png" alt="image-20191231162145870"></p>
 </li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+<ul>
 <li><p>第二阶段预测：在第一阶段中提取出的实体和关系，并不能考虑到他们之间的相互影响，所以为了考虑命名实体和关系之间的相互关系，并且关注文本中所有单词对之间的隐式特征，模型在第二阶段预测中使用关系权重GCN来进行进一步提取信息。在第一阶段之后，模型产生了一个完整的关系权重图。然后第二阶段，在关系图中采用Bi-GCN，将不同的关系的不同重要维度聚合成一个综合的单词特征。第二阶段的Bi-GCN进一步考虑了加权关系传播并针对每一个单词提取出足够多的特征。</p>
 <p><img src="/images/1570616182155.png" alt="1570616182155"></p>
 </li>
 </ul>
-</li>
+<ul>
 <li><p><strong>论文实验</strong></p>
 <p>论文在NYT和WebNLG数据集上对模型进行了评估，并采用NovelTagging，MultiDecoder作为对比。实验结果显示，GraphRel的F1值相较于之前最好的结果，在NYT上优化了3.2%，在WebNLG上优化了5.8%。同时实验也反映出第二阶段的预测确实可以提取出更多的特征信息。</p>
 </li>
@@ -536,8 +541,9 @@
 <h2 id="Matching-the-Blanks-Distributional-Similarity-for-Relation-Learning"><a href="#Matching-the-Blanks-Distributional-Similarity-for-Relation-Learning" class="headerlink" title="Matching the Blanks: Distributional Similarity for Relation Learning"></a>Matching the Blanks: Distributional Similarity for Relation Learning</h2><blockquote>
 <p>Baldini Soares, L., FitzGerald, N., Ling, J., &amp; Kwiatkowski, T. (2019). Matching the Blanks: Distributional Similarity for Relation Learning. 2895–2905. <a href="https://doi.org/10.18653/v1/p19-1279" target="_blank" rel="noopener">https://doi.org/10.18653/v1/p19-1279</a></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">通用目的关系提取器，能够对任意关系建模，是信息提取的核心。之前提出的一些通用目的关系提取器的方法，比如使用表面形式表示关系的方法，或者联合嵌入表面形式和已有知识图谱中的关系的方法，都不能很好地泛化。这篇论文基于Harris的分布式假说和最近在文本表示方面的进展（Bert模型），仅仅从实体链接的文本中构建了任务无关的关系表示。实验显示，模型即使不使用任何任务的训练数据，在FewRel数据集上的表现也能显著优于之前的方法。此外模型在有监督的关系抽取数据集SemEval 2010 Task8、KBP37、TACRED上也达到了SOTA的效果。</span><br></pre></td></tr></table></figure>
-
+<hr>
+<p>通用目的关系提取器，能够对任意关系建模，是信息提取的核心。之前提出的一些通用目的关系提取器的方法，比如使用表面形式表示关系的方法，或者联合嵌入表面形式和已有知识图谱中的关系的方法，都不能很好地泛化。这篇论文基于Harris的分布式假说和最近在文本表示方面的进展（Bert模型），仅仅从实体链接的文本中构建了任务无关的关系表示。实验显示，模型即使不使用任何任务的训练数据，在FewRel数据集上的表现也能显著优于之前的方法。此外模型在有监督的关系抽取数据集SemEval 2010 Task8、KBP37、TACRED上也达到了SOTA的效果。</p>
+<hr>
 <ul>
 <li><p><strong>论文背景</strong></p>
 <p>通用目的关系提取器，能够对任意关系建模，是信息提取的核心。之前提出的一些通用目的关系提取器的方法，比如使用表面形式表示关系的方法，或者联合嵌入表面形式和已有知识图谱中的关系的方法，都不能很好地泛化。这篇论文基于Harris的分布式假说和最近在文本表示方面的进展（Bert模型），仅仅从实体链接的文本中构建了任务无关的关系表示。</p>
@@ -584,8 +590,9 @@
 <h2 id="Emotion-Cause-Pair-Extraction-A-New-Task-to-Emotion-Analysis-in-Texts"><a href="#Emotion-Cause-Pair-Extraction-A-New-Task-to-Emotion-Analysis-in-Texts" class="headerlink" title="Emotion-Cause Pair Extraction: A New Task to Emotion Analysis in Texts"></a>Emotion-Cause Pair Extraction: A New Task to Emotion Analysis in Texts</h2><blockquote>
 <p>Xia, R., &amp; Ding, Z. (2019). Emotion-Cause Pair Extraction: A New Task to Emotion Analysis in Texts. 1003–1012. <a href="https://doi.org/10.18653/v1/p19-1096" target="_blank" rel="noopener">https://doi.org/10.18653/v1/p19-1096</a></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这篇论文提出了情感分析领域的一个新任务，即原因情感联合提取。之前的情感分析任务都是将情感提取和原因提取分开进行，而这篇论文的作者发现这两个任务并不是相互独立的，而是互相补充的。因而作者就这个想法提出了一个新的任务，将原因和情感联合提取，即Emotion-Cause Pair Extraction(ECPE)。同时，作者也提出了一种解决这个任务的方法，这个方法分为两步，第一步是通过多任务学习分别进行情感提取和原因提取，之后第二步将上一步提取出的情感和原因进行配对和筛选。这种方法经过在情感原因提取的语料上进行实验，表明了ECPE任务的可行性以及这种解决方法的高效性。</span><br></pre></td></tr></table></figure>
-
+<hr>
+<p>这篇论文提出了情感分析领域的一个新任务，即原因情感联合提取。之前的情感分析任务都是将情感提取和原因提取分开进行，而这篇论文的作者发现这两个任务并不是相互独立的，而是互相补充的。因而作者就这个想法提出了一个新的任务，将原因和情感联合提取，即Emotion-Cause Pair Extraction(ECPE)。同时，作者也提出了一种解决这个任务的方法，这个方法分为两步，第一步是通过多任务学习分别进行情感提取和原因提取，之后第二步将上一步提取出的情感和原因进行配对和筛选。这种方法经过在情感原因提取的语料上进行实验，表明了ECPE任务的可行性以及这种解决方法的高效性。</p>
+<hr>
 <ul>
 <li><p><strong>论文背景</strong></p>
 <p>情感原因提取任务（Emotion Cause Extraction,ECE）主要目的是从已标注情感的文本中提取出对应情绪的潜在原因。这项任务有两个缺点，第一就是在测试集上进行原因提取之前必须先标注文本的情感，这样使得ECE很难直接在实际应用中使用；第二就是这种先标注情感再提取原因的方法忽略了情感和原因之间的相互依赖性。</p>
@@ -626,8 +633,9 @@
 <h2 id="Attention-Based-Bidirectional-Long-Short-Term-Memory-Networks-for-Relation-Classification"><a href="#Attention-Based-Bidirectional-Long-Short-Term-Memory-Networks-for-Relation-Classification" class="headerlink" title="Attention-Based Bidirectional Long Short-Term Memory Networks for Relation Classification"></a>Attention-Based Bidirectional Long Short-Term Memory Networks for Relation Classification</h2><blockquote>
 <p>Zhou, P., Shi, W., Tian, J., Qi, Z., Li, B., Hao, H., &amp; Xu, B. (2016). Attention-based bidirectional long short-term memory networks for relation classification. 54th Annual Meeting of the Association for Computational Linguistics, ACL 2016 - Short Papers, 207–212. Retrieved from <a href="https://www.aclweb.org/anthology/P16-2034" target="_blank" rel="noopener">https://www.aclweb.org/anthology/P16-2034</a></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这篇论文提出了一个基于注意力机制的双向LSTM网络(Att-BLSTM)，目的在于更好地提取句子中重要的语义信息，其中主要是用于关系分类。另外这篇论文提出的这个模型不需要使用任何来自词汇资源或者NLP系统的特征信息，而是采用了一种相对简单的特征信息，将四个位置索引看作单独的词，然后将所有单词转换成词向量，生成一个简单但是完备的模型。论文对模型在SemEval数据集上进行评估，结果显示F1值达到84.0%，比现有的相关方法还要高。</span><br></pre></td></tr></table></figure>
-
+<hr>
+<p>这篇论文提出了一个基于注意力机制的双向LSTM网络(Att-BLSTM)，目的在于更好地提取句子中重要的语义信息，其中主要是用于关系分类。另外这篇论文提出的这个模型不需要使用任何来自词汇资源或者NLP系统的特征信息，而是采用了一种相对简单的特征信息，将四个位置索引看作单独的词，然后将所有单词转换成词向量，生成一个简单但是完备的模型。论文对模型在SemEval数据集上进行评估，结果显示F1值达到84.0%，比现有的相关方法还要高。</p>
+<hr>
 <ul>
 <li><p><strong>论文背景</strong></p>
 <p>关系分类是NLP中一项重要的语义处理任务，目前比较好的方法依旧依赖于词汇资源比如WordNet或者NLP系统比如依赖解析和命名实体识别，以此来获取更高水平的特征。另外在关系分类中的一个挑战是重要的语义信息可能出现在句子的任何位置，这使得获取语义信息更加难了。为了解决这些困难，这篇论文提出了一个基于注意力机制的双向LSTM网络，从句子中获取重要的语义信息。</p>
@@ -657,8 +665,9 @@
 <h2 id="ALBERT-A-Lite-BERT-for-Self-supervised-Learning-of-Language-Representations"><a href="#ALBERT-A-Lite-BERT-for-Self-supervised-Learning-of-Language-Representations" class="headerlink" title="ALBERT: A Lite BERT for Self-supervised Learning of Language Representations"></a>ALBERT: A Lite BERT for Self-supervised Learning of Language Representations</h2><blockquote>
 <p>Lan, Z., Chen, M., Goodman, S., Gimpel, K., Sharma, P., &amp; Soricut, R. (2019). ALBERT: A Lite BERT for Self-supervised Learning of Language Representations. 1–16. Retrieved from <a href="http://arxiv.org/abs/1909.11942" target="_blank" rel="noopener">http://arxiv.org/abs/1909.11942</a></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在预训练自然语言表示的任务中，虽然随着模型大小的逐渐增加，模型的效果会逐渐改善，但是模型的训练会受到GPU/TPU内存的限制，会耗费更长的训练时间，也可能会产生预料之外的模型效果变差。为了解决这些问题，这篇论文提出了两种减少模型参数的方法，并用于Bert模型上，以此来减少模型的内存消耗并且增加模型的训练速度。此外论文还使用了一个自我监督的损失函数，来关注句子之间的关联性。论文将这些改进方法使用在了Bert模型上，并提出了一个新的是用更少参数的模型ALBERT，并且对新提出的这个模型进行了评估和测验，结果显示这个这个模型能够在GLUE，RACE和SQuAD这些基准数据集上达到SOTA的结果。</span><br></pre></td></tr></table></figure>
-
+<hr>
+<p>在预训练自然语言表示的任务中，虽然随着模型大小的逐渐增加，模型的效果会逐渐改善，但是模型的训练会受到GPU/TPU内存的限制，会耗费更长的训练时间，也可能会产生预料之外的模型效果变差。为了解决这些问题，这篇论文提出了两种减少模型参数的方法，并用于Bert模型上，以此来减少模型的内存消耗并且增加模型的训练速度。此外论文还使用了一个自我监督的损失函数，来关注句子之间的关联性。论文将这些改进方法使用在了Bert模型上，并提出了一个新的是用更少参数的模型ALBERT，并且对新提出的这个模型进行了评估和测验，结果显示这个这个模型能够在GLUE，RACE和SQuAD这些基准数据集上达到SOTA的结果。</p>
+<hr>
 <ul>
 <li><p><strong>论文背景</strong></p>
 <p>这篇论文针对目前模型大小逐渐增加产生的一些内存耗费过多和训练时间过长等一些问题，基于Bert模型提出了相应的解决方案。具体来说，就是设计了一个新的模型，一个轻量级的Bert，简称ALBERT。ALBERT和Bert相比，有三个改进的地方，分别是两种减少参数的技术和一个针对句子顺序预测的自监督损失函数。其中两种减少参数的技术分别是<strong>因式分解向量参数</strong>和<strong>不同层参数共享</strong>。因式分解向量参数就是将较大的词汇向量矩阵分解成两个小的矩阵，将隐藏层的大小和词汇向量大小分开。这种分离可以单独增加隐藏层大小而不会影响词汇向量的参数大小。而采用不同层参数共享，可以阻止参数量随着模型深度增加而增多。另外的一种改进，是一个针对句子顺序预测的自监督的损失函数，被称为<strong>SOP</strong>。SOP的提出主要是为了关注句子之间的联系，同时解决原始Bert模型中下一个句子预测损失函数（NOP）产生的低效性。这篇论文对模型在一些基准数据集上进行评估和测试，结果显示模型能够在GLUE，RACE和SQuAD这些基准数据集上达到SOTA的结果。</p>
@@ -684,8 +693,9 @@
 <h2 id="Attention-is-all-you-need"><a href="#Attention-is-all-you-need" class="headerlink" title="Attention is all you need"></a>Attention is all you need</h2><blockquote>
 <p>Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., … Polosukhin, I. (2017). Attention is all you need. Advances in Neural Information Processing Systems, 2017-Decem(Nips), 5999–6009. Retrieved from <a href="https://arxiv.org/pdf/1706.03762.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1706.03762.pdf</a></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">这篇论文提出了一个新的模型Transformer,这个模型是针对机器翻译的任务提出的。在此之前，机器翻译的任务主要主要是采用RNN神经网络，RNN可以处理任意长度的输入，并且能够提取序列的时序信息，不过RNN也有一些不足，主要缺点有两个，一个是RNN序列处理难以并行化，当数据量大的时候训练时间资源耗费较多；另一个是RNN网络比较难以处理长距离和层级化的依赖关系，这样不太利于处理长文本，也导致机器翻译任务的精度有所下降。</span><br><span class="line">因而，针对上述RNN网络存在的问题，谷歌在这篇文章中提出了自己的解决方案，即Tranformer模型。这个模型是一个Seq2Seq模型，并且采用了注意力机制。模型整体架构是由Encoder和Decoder两部分组成，其中Encoder和Decoder分别有6层，Encoder的最后一层与Decoder的每一层进行连接，并进行注意力操作。论文对模型在机器翻译任务上进行了评估，结果显示，模型在WMT2014 English-to-German和English-to-French任务上均达到了新的SOTA结果。</span><br></pre></td></tr></table></figure>
-
+<hr>
+<p>这篇论文提出了一个新的模型Transformer,这个模型是针对机器翻译的任务提出的。在此之前，机器翻译的任务主要主要是采用RNN神经网络，RNN可以处理任意长度的输入，并且能够提取序列的时序信息，不过RNN也有一些不足，主要缺点有两个，一个是RNN序列处理难以并行化，当数据量大的时候训练时间资源耗费较多；另一个是RNN网络比较难以处理长距离和层级化的依赖关系，这样不太利于处理长文本，也导致机器翻译任务的精度有所下降。<br>因而，针对上述RNN网络存在的问题，谷歌在这篇文章中提出了自己的解决方案，即Tranformer模型。这个模型是一个Seq2Seq模型，并且采用了注意力机制。模型整体架构是由Encoder和Decoder两部分组成，其中Encoder和Decoder分别有6层，Encoder的最后一层与Decoder的每一层进行连接，并进行注意力操作。论文对模型在机器翻译任务上进行了评估，结果显示，模型在WMT2014 English-to-German和English-to-French任务上均达到了新的SOTA结果。</p>
+<hr>
 <ul>
 <li><p><strong>论文背景</strong></p>
 <p>在机器翻译方面，主要采用的是RNN网络模型，但是RNN本身有两个缺点，一是RNN进行序列处理时难以进行并行化，另一个是RNN网络难以处理长距离和层级化的依赖关系。因而这篇论文就这个问题的解决，针对机器翻译任务，提出了一个新的模型，即Transformer模型。</p>
@@ -710,8 +720,9 @@
 <h2 id="An-Introductory-Survey-on-Attention-Mechanisms-in-NLP-Problems"><a href="#An-Introductory-Survey-on-Attention-Mechanisms-in-NLP-Problems" class="headerlink" title="An Introductory Survey on Attention Mechanisms in NLP Problems"></a>An Introductory Survey on Attention Mechanisms in NLP Problems</h2><blockquote>
 <p>Hu, D. (2020). An Introductory Survey on Attention Mechanisms in NLP Problems. 432–448. <a href="https://doi.org/10.1007/978-3-030-29513-4_31" target="_blank" rel="noopener">https://doi.org/10.1007/978-3-030-29513-4_31</a></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这篇论文介绍了注意力机制以及相关变体，通过对近些年一些工作的调研，总结了注意力机制在不同的NLP任务中的使用，评估了相应性能，探索了注意力机制与机器学习方法的关联。这篇论文首先介绍了注意力机制的基本形式，然后介绍了几种不同的注意力机制的变体，分别是多维度注意力机制，分层注意力机制，自注意力机制，基于内存的注意力机制和特定任务的注意力机制。之后论文给出了注意力机制在机器学习方面的一些应用，比如预训练和聚集。最后论文并对两种评价注意力机制的性能的方法（定性和定量）进行了描述。</span><br></pre></td></tr></table></figure>
-
+<hr>
+<p>这篇论文介绍了注意力机制以及相关变体，通过对近些年一些工作的调研，总结了注意力机制在不同的NLP任务中的使用，评估了相应性能，探索了注意力机制与机器学习方法的关联。这篇论文首先介绍了注意力机制的基本形式，然后介绍了几种不同的注意力机制的变体，分别是多维度注意力机制，分层注意力机制，自注意力机制，基于内存的注意力机制和特定任务的注意力机制。之后论文给出了注意力机制在机器学习方面的一些应用，比如预训练和聚集。最后论文并对两种评价注意力机制的性能的方法（定性和定量）进行了描述。</p>
+<hr>
 <ul>
 <li><p><strong>论文背景</strong></p>
 <p>论文从机器翻译任务入手，引出了基本的注意力机制。传统的机器翻译多是基于RNN架构，但这种架构有两个缺点，一个是RNN具有遗忘性，即随着时间前向传播的过程中，RNN会遗弃一些旧的信息；另一个缺点是在解码过程中没有明确的单词划分，所以在经过整个句子序列时注意力会被分散。为了解决这个问题，注意力机制被提出。和传统的编码解码结构相比，基于注意力机制的结构在解码过程中产生下一个隐藏状态时，除了依赖前一个隐藏状态和预测出的单词外，还依赖隐藏状态的加权和。</p>
