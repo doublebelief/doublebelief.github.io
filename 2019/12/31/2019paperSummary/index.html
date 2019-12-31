@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="Paper Summary(2019.9-2019.12)Knowledge Graph Trans翻译模型系列：  TransE :Translating Embeddings for Modeling Multi-relational Data TransH: Knowledge Graph Embedding by Translating on Hyperplanes TransR: Lea">
+<meta name="keywords" content="NLP,SA,KG">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Paper Summary(2019.9-2019.12)">
+<meta property="og:url" content="http://doublebelief.github.io/2019/12/31/2019paperSummary/index.html">
+<meta property="og:site_name" content="Double Belief Blog">
+<meta property="og:description" content="Paper Summary(2019.9-2019.12)Knowledge Graph Trans翻译模型系列：  TransE :Translating Embeddings for Modeling Multi-relational Data TransH: Knowledge Graph Embedding by Translating on Hyperplanes TransR: Lea">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-31T10:27:26.337Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Paper Summary(2019.9-2019.12)">
+<meta name="twitter:description" content="Paper Summary(2019.9-2019.12)Knowledge Graph Trans翻译模型系列：  TransE :Translating Embeddings for Modeling Multi-relational Data TransH: Knowledge Graph Embedding by Translating on Hyperplanes TransR: Lea">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://doublebelief.github.io/2019/12/31/2019paperSummary/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  
+  <title>Paper Summary(2019.9-2019.12) | Double Belief Blog</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?552460380a99fdfcac4a7d3ba091360f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- 页面点击小红心 -->
+	<script type="text/javascript" src="/js/src/love.js"></script>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Double Belief Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doublebelief.github.io/2019/12/31/2019paperSummary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Double Belief">
+      <meta itemprop="description" content="For Code, For Beauty.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Double Belief Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Paper Summary(2019.9-2019.12)
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-31 18:23:33 / 修改时间：18:27:26" itemprop="dateCreated datePublished" datetime="2019-12-31T18:23:33+08:00">2019-12-31</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Paper-Notes/" itemprop="url" rel="index"><span itemprop="name">Paper Notes</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">23k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">21 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Paper-Summary-2019-9-2019-12"><a href="#Paper-Summary-2019-9-2019-12" class="headerlink" title="Paper Summary(2019.9-2019.12)"></a>Paper Summary(2019.9-2019.12)</h1><h2 id="Knowledge-Graph"><a href="#Knowledge-Graph" class="headerlink" title="Knowledge Graph"></a>Knowledge Graph</h2><blockquote>
+<p>Trans翻译模型系列：</p>
+<ul>
+<li>TransE :Translating Embeddings for Modeling Multi-relational Data</li>
+<li>TransH: Knowledge Graph Embedding by Translating on Hyperplanes</li>
+<li>TransR: Learning Entity and Relation Embeddings for Knowledge Graph Completion</li>
+<li>TransD: Knowledge Graph Embedding via Dynamic Mapping Matrix</li>
+<li>TransA:  An Adaptive Approach for Knowledge Graph Embedding</li>
+</ul>
+<p>知识图谱表示学习方法：</p>
+<ul>
+<li>Holographic Embeddings of Knowledge Graphs</li>
+<li>Text-Enhanced Representation Learning for Knowledge Graph</li>
+<li>Representation Learning of Knowledge Graphs with Hierarchical Types</li>
+</ul>
+<p>关系预测：</p>
+<ul>
+<li>Convolutional 2D Knowledge Graph Embeddings</li>
+<li>A Novel Embedding Model for Knowledge Base Completion Based on Convolutional Neural Network </li>
+<li>Learning Attention-based Embeddings for Relation Prediction in Knowledge Graphs</li>
+<li>Graph Attention Networks</li>
+</ul>
+</blockquote>
+<h3 id="Translation-Model"><a href="#Translation-Model" class="headerlink" title="Translation Model"></a>Translation Model</h3><p><strong>翻译模型</strong></p>
+<hr>
+<ul>
+<li><p>TransE :Translating Embeddings for Modeling Multi-relational Data</p>
+<p>TransE模型是第一个翻译模型，将知识图谱中的实体和关系进行向量化处理。它的核心思想比较简单，即每个三元组（h，r，t）中的关系r被看成从实体h到实体r的一个翻译向量，真三元组中h+r尽可能等于t，而假三元组中h+r尽可能远离t。但是，模型中实体和关系的向量是固定的，因而模型只能解决一对一的关系问题，对于多对一或多对多之类的关系，模型则会产生歧义，不易处理。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>TransH: Knowledge Graph Embedding by Translating on Hyperplanes</p>
+<p>TransH模型是，针对TransE模型不能处理多对多之类的关系而提出的一个变体。这个模型中的每个关系都由两个向量表示：超平面上的范数向量（wr）和超平面上的平移向量（dr）。对于一个三元组（h，r，t），在超平面上h和t的投影通过低误差的平移向量dr进行连接。这种方式既能解决TransE不能处理多对多之类的关系，又能不增加模型的复杂度。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>TransR: Learning Entity and Relation Embeddings for Knowledge Graph Completion</p>
+<p>TransE 和 TransH 都假设实体和关系嵌入在相同的空间中。然而，一个实体是多种属性的综合体，不同关系对应实体的不同属性，即头尾节点和关系可能不在一个向量空间中。因而为了解决这个问题，TransR模型被提出。<br>TranR模型对于每个元组（h，r，t），首先将实体空间内的实体通过 Mr 矩阵投影到关系 r 所在的空间内，得到 hr 和 tr ，然后使具有这个关系的头/尾实体的hr+r≈tr，即靠近彼此，而不具有此关系的实体彼此远离。</p>
+<p>此外，仅仅通过单个的关系向量还不足以建立从头实体到尾实体的所有翻译向量，即对于同一条关系 r 来讲，r 具有多种语义上的表示。因而通过将不同的头尾实体对聚类成组，并为每个组学习不同的关系向量来扩展TransR ，这被称为基于簇的TransR （即CTransR ）。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>TransD: Knowledge Graph Embedding via Dynamic Mapping Matrix</p>
+<p>TransE、TransH 和 TransR 都认为每种关系只对应一种语义表示，而在实际情况中，关系r可能代表不同的含义,因而基于动态矩阵的TransD模型被提出，这个模型中，每个实体和关系有两个向量，第一个向量表示实体或关系的含义，另一个向量（称为投影向量）表示将实体嵌入到关系向量空间中并将其用于构造映射矩阵的方式。TransD在TransR的基础上，将关系的映射矩阵简化为两个向量的积，这样TransD模型将矩阵运算简化成了向量间的运算，能够很大程度上提高运算速度。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>TransA:  An Adaptive Approach for Knowledge Graph Embedding</p>
+<p>基于翻译的方法损失函数过于简单，损失函数的距离只采用L1与L2，不够灵活，损失函数将实体和关系向量中的每一维属性等同考虑不够健壮，不能很好地在知识库中建模各种复杂的实体/关系。为了解决这个问题，TransA模型将损失函数中的距离改为马氏距离（Mahalanobisdistance），并且在不同维度学习不同的权重。相比较TransE模型，TransA引入了Wr矩阵为不同维度的向量进行加权，并利用LDL方法对Wr矩阵进行分解。TransA采用自适应度量思想来更好地表示知识，这个方法在知识库中有效地建模了各种复杂的实体/关系，并且在实验上有了显著的改进。</p>
+</li>
+</ul>
+<hr>
+<h3 id="Knowledge-Graph-Representation-Learning"><a href="#Knowledge-Graph-Representation-Learning" class="headerlink" title="Knowledge Graph Representation Learning"></a>Knowledge Graph Representation Learning</h3><p><strong>知识图谱表示学习方法</strong></p>
+<hr>
+<ul>
+<li><p>Holographic Embeddings of Knowledge Graphs</p>
+<p>Holographic Embeddings通过全息嵌入（HOLE）来学习整个知识图谱的合成向量空间表示。通过使用相关性作为组合操作符，HOLE能够获取丰富的交互性息，并且能够同时具有以下优点：保持计算效率，训练简单，可以拓展到非常大的数据集。为了结合张量积的表现能力和TransE的效率和简洁性，HOLE使用了向量的循环相关性来表征实体对。和张量积相比，循环相关不会增加组合特征的维度。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Text-Enhanced Representation Learning for Knowledge Graph</p>
+<p>基于文本增强的知识向量(TEKE)的知识图谱表示学习方法，是为了解决传统基于翻译的方法的一些缺陷，比如关系性能低下，知识图谱结构稀疏。TEKE包含四个关键组件:(1)实体标注（Entity Annotation）：对于给定文本语料库，首先使用实体链接工具自动化对KG中的实体进行标注。(2)文本上下文向量（Textual Context Embedding）：基于实体标注的文本语料库，构建实体与单词之间的共现网络，将KG与文本语料库连接起来。然后学习点状和成对的文本上下文向量。(3)实体/关系表示建模（Entity/Relation Representation Modeling）：通过合并文本上下文向量，正式制定了文本增强的实体/关系向量。(4)表示训练（Representation Training）：最后提出了一种基于平移优化的实体/关系向量训练方法。TEKE经过实验证明，能够很好地解决以往方法中关系性能差和知识图谱结构稀疏的缺陷。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Representation Learning of Knowledge Graphs with Hierarchical Types</p>
+<p>基于类型的知识表示学习(TKRL)方法，是为了充分利用层次实体类型的优势而提出的知识表示学习方法。TKRL使用递归层次编码器（RHE）来改进投影矩阵Mc的表示方式，并且，因为层次结构中子类型的不同粒度在意义上可能不同，TKRL又采用加权层次编码器来考虑层次中的权重。TKRL模型在知识图谱补全和三分类两项任务中充分利用了类型信息，实验结果均有一定的改善。</p>
+</li>
+</ul>
+<hr>
+<h3 id="Relation-Prediction"><a href="#Relation-Prediction" class="headerlink" title="Relation Prediction"></a>Relation Prediction</h3><p><strong>关系预测</strong></p>
+<hr>
+<ul>
+<li><p>Convolutional 2D Knowledge Graph Embeddings</p>
+<p>ConvE是一个用来解决关系预测的多层卷积网络模型，这个模型在向量上使用二维卷积核来预测知识图谱中缺失的关系，并且在一些基础的数据集上表现出优良的结果。大多数的NLP任务都是用一维卷积核，在一段时间序列向量上进行操作，而这篇论文使用二维卷积核，则是在向量空间里进行操作。在模型中使用二维卷积核可以增加向量之间的交互点，进而提升模型的表现力，并且相比于一维卷积核，二维卷积核模型能够在两个向量之间提取出更多的特征。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>A Novel Embedding Model for Knowledge Base Completion Based on Convolutional Neural Network </p>
+<p>ConvKB是一个针对关系预测提出的知识向量模型。在ConvKB模型中，每一个三元组被表示为一个三列的矩阵，其中每个列向量表示一个三元组元素。这个三列矩阵传入卷积层，在这一层里，多个过滤器处理这个矩阵，产生不同的特征图谱。之后这些特征图谱被连接成一个特征向量来表示输入的三元组。这个特征向量和一个权重向量进行点积，并返回一个分数，这个分数被用于预测这个输入的三元组是否有效。ConvKB应用卷积神经网络来探索相同维度实体和关系向量的之间的全局关系，能够很好地进行关系预测。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Learning Attention-based Embeddings for Relation Prediction in Knowledge Graphs</p>
+<p>KG+GAT是一个将图注意力网络（Graph Attention Networks，GAT）引入知识图谱的方法，这个方法在原有的GAT的基础上，结合知识图谱的三元组，提出了一个GAT的变体，并利用这个GAT变体结合ConvKB,生成知识图谱表示信息，并利用这些信息对知识图谱中的关系进行预测，即进行知识图谱的补充。目前这种方法在FB15K-237数据集上达到SOTA的效果。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Graph Attention Networks</p>
+<p>Graph Attention Networks，GAT是图注意力网络，这个网络结构处理的对象是图结构数据，使用带有mask的self-attention自我注意力层，图中的每个节点可以根据相邻节点的特征，为其分配不同的权值。这样使得每个节点均能根据不同的权重值获取到相邻节点的信息，同时也能高效地计算整个图结构的网络。GAT的提出，是对图卷积网络GCN的改进，能够更加高效和并行的处理图结构的数据。</p>
+</li>
+</ul>
+<hr>
+<h2 id="Natural-Language-Processing"><a href="#Natural-Language-Processing" class="headerlink" title="Natural Language Processing"></a>Natural Language Processing</h2><blockquote>
+<p>关系抽取：</p>
+<ul>
+<li>GraphRel: Modeling Text as Relational Graphs for Joint Entity and Relation Extraction</li>
+<li>Matching the Blanks: Distributional Similarity for Relation Learning</li>
+<li>Fine-tuning Pre-Trained Transformer Language Models to Distantly Supervised Relation Extraction</li>
+<li>Emotion-Cause Pair Extraction: A New Task to Emotion Analysis in Texts （情感原因联合抽取）</li>
+<li>Attention-Based Bidirectional Long Short-Term Memory Networks for Relation Classification（关系分类）</li>
+</ul>
+<p>注意力机制及应用：</p>
+<ul>
+<li>An Introductory Survey on Attention Mechanisms in NLP Problems</li>
+<li>Attention is all you need</li>
+<li>ALBERT: A Lite BERT for Self-supervised Learning of Language Representations</li>
+<li>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</li>
+<li>Pre-Training with Whole Word Masking for Chinese BERT</li>
+<li>Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context</li>
+</ul>
+<p>语言表示模型：</p>
+<ul>
+<li>ELMo: Deep contextualized word representations</li>
+</ul>
+<p>机器翻译：</p>
+<ul>
+<li>Neural Machine Translation by Jointly Learning to Align and Translate</li>
+<li>Effective Approaches to Attention-based Neural Machine Translation</li>
+</ul>
+</blockquote>
+<h3 id="Relation-Extraction"><a href="#Relation-Extraction" class="headerlink" title="Relation Extraction"></a>Relation Extraction</h3><p><strong>关系抽取</strong></p>
+<hr>
+<ul>
+<li><p>GraphRel: Modeling Text as Relational Graphs for Joint Entity and Relation Extraction</p>
+<p>这篇论文提出了一个新的模型GraphRel，这个模型是一个端到端的关系提取模型，使用了图卷积网络来抽取命名实体和关系。和之前的模型相比，GraphRel考虑了命名实体和关系之间的相互作用，通过一个关系权重的图卷积网络来更好地提取关系。另外，GraphRel也考虑了线性和依赖结构，以及文本单词对之间的隐式特征。这篇论文在NYT和WebNLG两个公开数据集上对GraphRel进行了评估，结果显示GraphRel具有很高的准确率和召回率，另外F1值也达到了一个新的高度。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Matching the Blanks: Distributional Similarity for Relation Learning</p>
+<p>通用目的关系提取器，能够对任意关系建模，是信息提取的核心。之前提出的一些通用目的关系提取器的方法，比如使用表面形式表示关系的方法，或者联合嵌入表面形式和已有知识图谱中的关系的方法，都不能很好地泛化。这篇论文基于Harris的分布式假说和最近在文本表示方面的进展（Bert模型），仅仅从实体链接的文本中构建了任务无关的关系表示。实验显示，模型即使不使用任何任务的训练数据，在FewRel数据集上的表现也能显著优于之前的方法。此外模型在有监督的关系抽取数据集SemEval 2010 Task8、KBP37、TACRED上也达到了SOTA的效果。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Fine-tuning Pre-Trained Transformer Language Models to Distantly Supervised Relation Extraction</p>
+<p>这篇论文介绍了一种用于关系提取的弱监督Transformer。通过选择性注意机制扩展了标准的Transformer体系结构，以处理多实例学习和预测，这样能够在远距离监督任务上直接微调预训练的Transformer语言模型。这使得显式特征提取最小化，并降低了错误积累的风险。这篇论文选择GPT作为语言模型，是因为和基于LSTM的语言模型或BERT相比，它的微调效率较高以及硬件需求合理。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Emotion-Cause Pair Extraction: A New Task to Emotion Analysis in Texts （情感原因联合抽取）</p>
+<p>这篇论文提出了情感分析领域的一个新任务，即原因情感联合提取。之前的情感分析任务都是将情感提取和原因提取分开进行，而这篇论文的作者发现这两个任务并不是相互独立的，而是互相补充的。因而作者就这个想法提出了一个新的任务，将原因和情感联合提取，即Emotion-Cause Pair Extraction(ECPE)。同时，作者也提出了一种解决这个任务的方法，这个方法分为两步，第一步是通过多任务学习分别进行情感提取和原因提取，之后第二步将上一步提取出的情感和原因进行配对和筛选。这种方法经过在情感原因提取的语料上进行实验，表明了ECPE任务的可行性以及这种解决方法的高效性。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Attention-Based Bidirectional Long Short-Term Memory Networks for Relation Classification（关系分类）</p>
+<p>这篇论文提出了一个基于注意力机制的双向LSTM网络(Att-BLSTM)，目的在于更好地提取句子中重要的语义信息，其中主要是用于关系分类。另外这篇论文提出的这个模型不需要使用任何来自词汇资源或者NLP系统的特征信息，而是采用了一种相对简单的特征信息，将四个位置索引看作单独的词，然后将所有单词转换成词向量，生成一个简单但是完备的模型。论文对模型在SemEval数据集上进行评估，结果显示F1值达到84.0%，比现有的相关方法还要高。</p>
+</li>
+</ul>
+<hr>
+<h3 id="Attention-Relevance"><a href="#Attention-Relevance" class="headerlink" title="Attention Relevance"></a>Attention Relevance</h3><p><strong>注意力机制相关</strong></p>
+<hr>
+<ul>
+<li><p>An Introductory Survey on Attention Mechanisms in NLP Problems</p>
+<p>这篇论文介绍了注意力机制以及相关变体，通过对近些年一些工作的调研，总结了注意力机制在不同的NLP任务中的使用，评估了相应性能，探索了注意力机制与机器学习方法的关联。这篇论文首先介绍了注意力机制的基本形式，然后介绍了几种不同的注意力机制的变体，分别是多维度注意力机制，分层注意力机制，自注意力机制，基于内存的注意力机制和特定任务的注意力机制。之后论文给出了注意力机制在机器学习方面的一些应用，比如预训练和聚集。最后论文并对两种评价注意力机制的性能的方法（定性和定量）进行了描述。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Attention is all you need</p>
+<p>这篇论文提出了一个新的模型Transformer,这个模型是针对机器翻译的任务提出的。在此之前，机器翻译的任务主要主要是采用RNN神经网络，RNN可以处理任意长度的输入，并且能够提取序列的时序信息，不过RNN也有一些不足，主要缺点有两个，一个是RNN序列处理难以并行化，当数据量大的时候训练时间资源耗费较多；另一个是RNN网络比较难以处理长距离和层级化的依赖关系，这样不太利于处理长文本，也导致机器翻译任务的精度有所下降。</p>
+<p>因而，针对上述RNN网络存在的问题，谷歌在这篇文章中提出了自己的解决方案，即Tranformer模型。这个模型是一个Seq2Seq模型，并且采用了注意力机制。模型整体架构是由Encoder和Decoder两部分组成，其中Encoder和Decoder分别有6层，Encoder的最后一层与Decoder的每一层进行连接，并进行注意力操作。论文对模型在机器翻译任务上进行了评估，结果显示，模型在WMT2014 English-to-German和English-to-French任务上均达到了新的SOTA结果。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>ALBERT: A Lite BERT for Self-supervised Learning of Language Representations</p>
+<p>在预训练自然语言表示的任务中，虽然随着模型大小的逐渐增加，模型的效果会逐渐改善，但是模型的训练会受到GPU/TPU内存的限制，会耗费更长的训练时间，也可能会产生预料之外的模型效果变差。为了解决这些问题，这篇论文提出了两种减少模型参数的方法，并用于Bert模型上，以此来减少模型的内存消耗并且增加模型的训练速度。此外论文还使用了一个自我监督的损失函数，来关注句子之间的关联性。论文将这些改进方法使用在了Bert模型上，并提出了一个新的是用更少参数的模型ALBERT，并且对新提出的这个模型进行了评估和测验，结果显示这个这个模型能够在GLUE，RACE和SQuAD这些基准数据集上达到SOTA的结果。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</p>
+<p>在BERT的框架中有两个步骤: 预训练和微调。在预训练中，使用不同训练任务的未标记数据进行训练。至于微调，首先使用预先训练的参数初始化BERT模型，然后使用来自下游任务的标记数据对所有参数进行微调。每个下游任务都有单独的微调模型，即使它们是用相同的预训练参数初始化的。图1中的问答示例大致表示了BERT的框架。<br>BERT的一个显著特征是它针对不同任务有统一架构。BERT的模型架构是一个多层双向转换器的编码器。BERT的输入序列可以是一个句子或两个组合在一起的句子。</p>
+<p>这篇论文使用两个非监督任务对BERT进行预训练。其中一个任务是Masked LM, 为了训练一个深层的双向表示，只需随机掩码输入符号的比例，然后预测这些掩码符号。将这个过程称为“Masked LM”(MLM)。另一项任务是下一句预测(NSP)。为了训练一个理解句子关系的模型，对一个可以由任何单语语料库生成的二值化下一句预测任务进行了预训练。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Pre-Training with Whole Word Masking for Chinese BERT</p>
+<p>这篇论文使用了中文Bert的全字屏蔽策略，并在研究社区发布了预先训练的模型。实验结果表明，与BERT和ERNIE相比，这篇论文提出的预训练模型在中文的NLP任务上有明显的改进。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context</p>
+<p>长期依赖关系问题是序列模型中常见的现象，使用神经网络来解决长期依赖关系仍具有挑战性，例如基于Gating的RNN和梯度裁剪技术（gradient clipping）虽然具有一定的解决长期依赖关系的能力，但还不能完全解决这个问题，而Transformer可以很好的获取长期依赖关系，但是仅限于固定长度的上下文，即将一个长的文本序列截断为几百个字符的固定长度片段，然后分别处理每个片段。这就产生了两个关键的限制，依赖关系的长度受限以及上下文碎片化。这篇论文为了解决这些限制，提出了一个新的架构，Transformer-XL(meaning extra long)，它能够使得依赖关系不受固定长度的限制，而且还有一些新的优势。Transformer-XL 主要有两种技术组成，一种是片段级递归机制(segment-level recurrence mechanism)，另一种是相对位置编码方案(relative positional encoding scheme)</p>
+</li>
+</ul>
+<hr>
+<h3 id="Language-Model"><a href="#Language-Model" class="headerlink" title="Language Model"></a>Language Model</h3><p><strong>语言表示模型</strong></p>
+<hr>
+<ul>
+<li><p>ELMo: Deep contextualized word representations</p>
+<p>这篇论文使用了一个双向LSTM向量，这个向量在大型文本语料库中由一个耦合的语言模型（LM）目标训练而来，因此，这篇论文称它是ELMo表示(语言模型的嵌入)，ELMo表示是深层次的，因为它是biLM所有内层的函数。具体来说，ELMo学习了一个向量的线性组合，这些向量堆叠在每个输入词之上，为每个结束任务使用，这样相比于仅仅使用顶层的LSTM层，显著地改善了性能。这篇论文给出了一些实验来证明ELMo表示在实践中表现效果良好。</p>
+</li>
+</ul>
+<hr>
+<h3 id="Machine-Translation"><a href="#Machine-Translation" class="headerlink" title="Machine Translation"></a>Machine Translation</h3><p><strong>机器翻译</strong></p>
+<hr>
+<ul>
+<li><p>Neural Machine Translation by Jointly Learning to Align and Translate</p>
+<p>这篇论文发现使用固定长度的向量阻碍了基本编码解码架构性能的提升，并拓展了这种方法，允许一个模型自动搜索和预测目标词相关的部分，并不是明确地形成这些部分。这种改进在长句中表现更为明显，但任何长度的句子都有改善。在英法翻译任务中，该方法通过单一的模型实现了与传统的基于短语的翻译系统相当或接近的翻译性能。此外，该模型在源句和对应的目标句之间找到了一种语言上合理的(软)对齐。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Effective Approaches to Attention-based Neural Machine Translation</p>
+<p>这篇论文研究了两种简单而有效的注意机制：一种是全局方法，它始终关注所有源单词；另一种是局部方法，它一次只关注一个源单词子集。这篇论文的集成模型使用了不同的注意力架构，在WMT15英德翻译任务中产生了一个新的最先进的结果，拥有25.9个BLEU点，比现有的由NMT和一个n-gram reranker支持的最佳系统提高了1.0个BLEU点。</p>
+</li>
+</ul>
+<hr>
+<h2 id="Sentiment-Analysis"><a href="#Sentiment-Analysis" class="headerlink" title="Sentiment Analysis"></a>Sentiment Analysis</h2><blockquote>
+<p>文档级别的情感分类</p>
+<ul>
+<li>Improving Review Representations with User Attention and Product Attention for Sentiment Classification</li>
+<li>Neural Sentiment Classification with User and Product Attention</li>
+<li>Using Sentiment Induction to Understand Variation in Gendered Online Communities</li>
+</ul>
+<p>句子级别的情感分类</p>
+<ul>
+<li>Linguistically Regularized LSTM for Sentiment Classification</li>
+<li>Lexicon information in neural sentiment analysis: a multi-task learning approach</li>
+</ul>
+<p>aspect级别的情感分类</p>
+<ul>
+<li>Target-Sensitive Memory Networks for Aspect Sentiment Classification</li>
+<li>Transformation Networks for Target-Oriented Sentiment Classification</li>
+<li>Aspect Based Sentiment Analysis with Gated Convolutional Networks</li>
+<li>Learning Latent Opinions for Aspect-level Sentiment Classification</li>
+<li>Multi-Entity Aspect-Based Sentiment Analysis with Context, Entity and Aspect Memory</li>
+<li>Targeted Aspect-Based Sentiment Analysis via Embedding Commonsense Knowledge into an Attentive LSTM</li>
+<li>A Hierarchical Model of Reviews for Aspect-based Sentiment Analysis</li>
+<li>Attention-based LSTM for Aspect-level Sentiment Classification</li>
+<li>Aspect Level Sentiment Classification with Deep Memory Network</li>
+<li>Progressive Self-Supervised Attention Learning for Aspect-Level Sentiment Analysis</li>
+<li>Language-Agnostic Model for Aspect-Based Sentiment Analysis</li>
+<li>Joint Aspect and Polarity Classification for Aspect-based Sentiment Analysis with End-to-End Neural Networks</li>
+</ul>
+<p>跨领域的情感分类</p>
+<ul>
+<li>End-to-End Adversarial Memory Network for Cross-domain Sentiment Classification</li>
+<li>Cross-Domain Sentiment Classification with Target Domain Specific Information</li>
+<li>A Helping Hand: Transfer Learning for Deep Sentiment Analysis</li>
+<li>Learning Sentence Embeddings with Auxiliary Tasks for Cross-Domain Sentiment Classification</li>
+<li>Bootstrap Domain-Specific Sentiment Classifiers from Unlabeled Corpora</li>
+</ul>
+<p>情感抽取</p>
+<ul>
+<li><p>A Question Answering Approach to Emotion Cause Extraction</p>
+</li>
+<li><p>A Co-Attention Neural Network Model for Emotion Cause Analysis with Emotional Context Awareness</p>
+</li>
+<li><p>ICON: Interactive Conversational Memory Network for Multimodal Emotion Detection</p>
+</li>
+<li><p>CARER: Contextualized Affect Representations for Emotion Recognition</p>
+</li>
+<li><p>Fine-Grained Emotion Detection in Health-Related Online Posts</p>
+</li>
+<li><p>EmoNet: Fine-Grained Emotion Detection with Gated Recurrent Neural Networks</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="Document-Level-SA"><a href="#Document-Level-SA" class="headerlink" title="Document-Level SA"></a>Document-Level SA</h3><p><strong>文档级别的情感分类</strong></p>
+<hr>
+<ul>
+<li><p>Improving Review Representations with User Attention and Product Attention for Sentiment Classification</p>
+<p>在评论情感分类方面，神经网络的使用能够产生很好的效果。最近的一些工作通过将用户和产品信息联合产生一个评论的表示，进而增强最终的分类效果。但是在评论中，有一些词或句子有强烈的用户特征，而也有一些词或句子有明显的产品特征。论文认为，这两种信息在决定最终评论的情感分类方面起着不同的作用，所以将这两种信息联合编码是不合理的。因此，这篇论文提出了一个新的框架来对用户和产品信息分别编码。首先，框架使用了两个分层神经网络，分别使用用户注意力机制和产品注意力机制，产生用户和产品两种表示，然后，框架使用了一种融合策略将两种表示融合，最终进行训练和预测。实验结果显示，这个新的框架能够产生SOTA的结果。论文还通过对注意力机制进行可视化操作，验证了框架的有效性和论文提出的猜想。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Neural Sentiment Classification with User and Product Attention</p>
+<p>文档级别的情感分类的主要目的是预测整个文档中用户对于产品的情感倾向。然而大部分现有的工作都忽略了用户整体的倾向和产品整体的特性，而仅仅关注于局部的文本。尽管有些工作考虑了这些信息，但是这些模型仅仅考虑了单词级别的信息，而没有考虑语义级别的信息，并且这些模型复杂度也比较高。针对现有的这些问题，这篇文章提出了一个分层神经网络模型，并且将全局的用户和产品信息用于情感分类。模型首先建立了一个分层的LSTM模型来产生句子和文档的表示，之后，通过不同语义级别的注意力机制将用户和产品信息引入模型中，并用于情感分类。论文中的实验结果表明，这篇论文的模型相比于现有的模型有很大的改善，并且达到了SOTA的结果。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Using Sentiment Induction to Understand Variation in Gendered Online Communities</p>
+<p>这篇论文对性别相关的社区进行了分析，从三个不同的方面进行定义，分别是文本，用户和情感。这三个方面的表示信息不同，反映了社区本质类别的不同。一些社区相关的情感词典反映了，情感能够作为一个重要的因素来对性别相关社区进行分类。因而，论文对社区相关的情感词进行了分析，结果显示，像Reddit这样活跃的社区，可以根据里面情感词的不同，反映出性别相关社区的类别。</p>
+</li>
+</ul>
+<hr>
+<h3 id="Sentence-Level-SA"><a href="#Sentence-Level-SA" class="headerlink" title="Sentence-Level SA"></a>Sentence-Level SA</h3><p><strong>句子级别的情感分类</strong></p>
+<hr>
+<ul>
+<li><p>Linguistically Regularized LSTM for Sentiment Classification</p>
+<p>这个论文主要解决句子级别的情感分类问题。尽管如今各种各样的神经网络模型已经被提出和使用，但是之前的一些网络模型，在句子级别的情感分类方面仍存在一些问题，比如需要依赖大量的短语标注信息，如果缺失这些标注信息，那么模型的结果将会受到很大的影响。又比如并没有充分利用语义资源，包括语义词典，否定词，强度词等。这篇论文提出了一个简单的时序模型，仅仅使用句子级的标注数据进行训练，同时尽量对语义词典，否定词和强度词这些语义资源进行建模。实验结果显示，这篇论文的模型能够获取到语义词典，否定词和强度词这些语义资源的情感信息，而且在一些基准数据集上有很好的表现。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Lexicon information in neural sentiment analysis: a multi-task learning approach</p>
+<p>这篇论文使用多任务学习的方法（Multi-task learning approach，MTL)将外部词典信息融合到了情感分类的神经网络之中，并用于句子级的情感分类，具体来说就是，论文使用多任务学习MTL使得双向LSTM情感分类器能够使用外部情感词典中的信息。论文针对提出的方法在英语和挪威语两个数据集上进行了测试，结果显示，相比于单任务的方法，多任务学习的方法在性能上有很大提升。此外，论文还贡献了一个挪威语的新的情感词典。</p>
+</li>
+</ul>
+<hr>
+<h3 id="Aspect-Level-SA"><a href="#Aspect-Level-SA" class="headerlink" title="Aspect-Level SA"></a>Aspect-Level SA</h3><p><strong>aspect级别的情感分类</strong></p>
+<hr>
+<ul>
+<li><p>Target-Sensitive Memory Networks for Aspect Sentiment Classification</p>
+<p>基于Aspect的情感分类（Aspect Sentiment Classification,ASC）是情感分析中的一个基础任务，给出一个aspect（也称target目标词）和一个相关句子，这个任务的目的就是判断出句子中关于aspect表述的情感倾向。最近的一些关于这方面的研究将记忆网络Memory Networks用于这项任务，达到了很好的表现效果。记忆网络中的注意力机制在探测目标词的情感文本过程起了很大的作用。然而这篇论文发现了一个记忆网络在ASC任务中的一个问题，就是有些对目标词比较敏感的情感不能被准确的识别，具体来说就是，有些情感词的情感倾向不仅依赖情感词本身，还依赖目标词，比如the price is high 和 the screen resolution is high这两句话中的high针对不同的目标词有不同的情感倾向，因而这个问题不能简单地提升对情感词的注意力机制来解决。为了解决这个问题，这篇论文提出了一个新的模型，即目标词敏感记忆网络（target-sensitive memory networks，TMN），另外针对这个模型，论文还提出几种变体方法，并且通过实验对这些方法进行了评估。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Transformation Networks for Target-Oriented Sentiment Classification</p>
+<p>面向target/aspect的情感分类是对句子中target/aspect(目标词)的情感进行分类。基于注意力机制的RNN网络能够很好地解决这个问题，并且能够达到SOTA的结果，但是基于注意权权重的词级特征组合分类可能会引入噪声，降低预测精度，例如，在“This dish is my favorite and I always get it and never get tired of it.”中，当突出显示意见修饰语“favorite”时，往往会涉及诸如“never”和“tired”之类的不相关的词,在某种程度上，这个问题源于注意机制。为了解决这个问题，这篇论文采用了双向RNN和CNN的叠加网络TNet，双向RNN获取单词表示，CNN提取主要特征，并且在两层网络之间提出了一个target-specific组件用来生成target的表示信息，还有一个context-preserve机制来保存RNN输出的原始文本表示信息。实验结果显示，这篇论文提出的模型能够在一些基准数据集上达到SOTA的结果。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Aspect Based Sentiment Analysis with Gated Convolutional Networks</p>
+<p>基于目标词（aspect）的情感分类能够比一般的情感分类提供更详尽的情感信息，因为这种方式能够基于目标词或者文本中的实例来进行细粒度的情感分类。论文将之前在这方面的方法总结为两个子任务，分别是目标类别的情感分类（aspect-category sentiment analysis,ACSA）和目标单词项的情感分类(aspect-term sentiment analysis,ATSA)。大多数之前的工作都是采用LSTM和注意力机制来进行目标词情感的预测，这些方法比较复杂，而且需要大量训练时间。这篇论文提出了一个基于卷积神经网络和门机制的模型，这个模型更加准确和高效。模型包含一个新的Gated Tanh-ReLU 单元，这个单元可以根据给出的目标词有选择性的输出情感特征。模型的架构相较于使用注意力机制的模型也更加简单。同时，还因为CNN不依赖时序关系，所以模型在训练过程中可以很好地并行化。论文在SemEval数据集上进行了实验，结果显示了模型的高效和准确。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Learning Latent Opinions for Aspect-level Sentiment Classification</p>
+<p>目标词级别的情感分类的主要目标是根据句子中的特定目标词，判断其在句子中的情感，这篇论文观察到这种情感分类往往和一个句子里的特定区域有关，所以论文认为好好利用这个特定区域的信息能够很好地进行情感分类。另外论文也认为这样的信息可以对模型预测的结果进行适当的调整。因而基于这种观察，论文提出了一个基于分段注意力机制（segmentation attention）的LSTM模型（SA-LSTM)，这个模型可以利用一个线性条件随机场有效地捕捉到句子表示和目标词之间的结构依赖关系。这个模型模仿了人们推理情感信息的过程：当给出一个目标词的时候，人们在做出对这个目标词情感判断之前，会去查找句子中目标词周围和目标词相关的文本区域。论文对提出的模型在不同语言的公开数据集上进行了测试，结果显示模型能够达到SOTA的结果。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Multi-Entity Aspect-Based Sentiment Analysis with Context, Entity and Aspect Memory</p>
+<p>近些年在商品评论方面基于目标词的情感分类逐渐受到关注，而且一些社交平台上的复杂文字信息也涉及到多个实体和多个目标词，因而这篇论文基于这种现状提出了一种新的情感分类任务，多实体的目标词情感分类（Multi-Entity Aspect-Based Sentiment Analysis，ME-ABSA)。这个新的任务主要是对实体-目标词组合对进行细粒度的情感分类，而基于目标词的情感分类可以说是这种任务的一个特例，即当ME-ABSA中的实体只有一个时，这个任务也就是ABSA。另外，论文同时提出了一种方法来解决ME-ABSA这个任务，这个方法对文本记忆信息（Context memory)，实体记忆信息(Entity memory)和目标词记忆信息(Aspect memory)进行建模,因而这种方法称为CEA方法。论文对CEA方法进行了实验，结果显示这种方法相比其他方法有很大的改进，另外论文也对这种方法进一步进行了分析，发现这种方法能够在一定的误差范围内产生新的实体-目标词组合，这样可以使得数据标注任务大大简化，最后，论文贡献出了一个ME-ABSA的公开数据集Baby Care Dataset。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Targeted Aspect-Based Sentiment Analysis via Embedding Commonsense Knowledge into an Attentive LSTM</p>
+<p>分析人们针对特定实体词的观点和情感是自然语言理解中的重要任务。这篇论文针对目标实体情感分类任务（targeted aspect-based sentiment analysis）提出了一个新的方法，这个给方法通过引入外部常识知识来解决实体词情感分类和目标词情感分类任务中的挑战和问题。论文采用分层注意力机制拓展了LSTM网络，其中分层注意力机制包含目标词级别的注意力机制和句子级别的注意力机制。情感概念的常识性知识传入深度神经网络的训练过程中，并且被用于情感分类。论文还提出了RNN的一种变体termed Sentic LSTM，用来更好地结合外部常识知识。论文在两个公开数据集上进行了实验，结果表明论文提出的架构和Sentic LSTM能够达到SOTA的结果。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>A Hierarchical Model of Reviews for Aspect-based Sentiment Analysis</p>
+<p>这篇论文针对顾客评论进行观点提取，提出了分层双向LSTM模型。之前的一些研究多关注评论中各个句子独立的情感分类，而没有考虑句子之间的结构信息。然而，句子之间的结构信息对整个评论的情感倾向是有影响的。这篇论文采用的模型使用分层的架构，采用句子级的双向LSTM和评论级的双向LSTM。论文与一些没有采用分层架构的基准模型进行对比，结果显示了论文提出的架构相比这些基准模型有所改进，而且在一些数据集上达到了SOTA的结果。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Attention-based LSTM for Aspect-level Sentiment Classification</p>
+<p>目标词（aspect）级别的情感分类是情感分析中的一个细粒度任务，可以得到更加完整和更有深度的结果。这篇论文提出，一个句子的情感类别，不仅仅和句子内容有关，还和关注的目标词有关，因而探索目标词和文本内容之间的关系是很有价值的。这篇论文针对目标词级别的情感分类任务提出了一个基于注意力机制的LSTM网络。通过注意力机制，能够根据不同的目标词聚焦句子中和目标词相关的部分。论文在SemEval 2014数据集上进行了实验，结果表明论文提出的ATAE-LSTM模型（Attention-based LSTM with Aspect Embedding）能够达到SOTA的结果。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Aspect Level Sentiment Classification with Deep Memory Network</p>
+<p>这篇论文针对目标词级别的情感分类，引入了深度记忆网络。不像基于特征的SVM和序列神经网络LSTM，这篇论文的方法在处理目标词情感分类时，明确地获取到了每一个单词的重要性。这里的重要程度和文本表示是通过多层计算网络计算而得，每一层计算网络采用一个针对外部存储的注意力模块和一个线性模块。经过在SemEval 2014数据集上的实验，结果表明这篇论文提出的MemNet模型相比于之前的模型有很大的改善，而且计算速度也快于之前的模型，准确率上达到了目前的SOTA结果。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Progressive Self-Supervised Attention Learning for Aspect-Level Sentiment Analysis</p>
+<p>在目标词级别的情感分类中，大多数神经网络方法都会采用注意力机制来增强模型的表现力，因为对目标词情感分类有用的往往是句子中的部分单词。然而注意力机制的使用会使得模型对句子中的一部分常出现的有用词过量学习，而忽略一些不常出现的有用词。这篇论文针对注意力机制本身存在的问题，提出了一个自监督的注意力学习方法，用于神经网络目标词情感分类（Aspect-level Sentiment Classification，ASC）。这种方法能够自动地在一个训练语料中获取到对目标词有用的注意力信息，进而改进了注意力机制。具体来说，这种方法在所有的训练实例上进行迭代的情感预测，每一个迭代中，具有最高注意力权重的单词被提取出来，单独存放，而它原来所在的句子中的位置则被mask掉，继续下一次迭代。最终根据迭代得到的注意力权重的结果，对模型进行训练，得到训练后的模型。经过实验测试，这种方法能够改进模型原有的结果，比单独采用注意力机制的方法有一定的改善，并且在两个主流的ASC模型上的测试达到了SOTA的结果。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Language-Agnostic Model for Aspect-Based Sentiment Analysis</p>
+<p>这篇论文针对目标词情感分析（aspect-based sentiment analysis）提出了一个语言独立的深度神经网络架构，这个网络架构基于双向LSTM网络，并且引入了额外的特征信息。论文在结合词向量和外部特征信息方面，提出了三个不同的方法。论文在六种语言（英语，西班牙语，法语，荷兰语，德语和印地语）和两个问题（目标词抽取和目标词情感分类）上分别对论文提出的方法进行了实验评估，结果表明，论文提出的方法在大多数情况下都能达到SOTA的水平。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Joint Aspect and Polarity Classification for Aspect-based Sentiment Analysis with End-to-End Neural Networks</p>
+<p>这篇论文针对（aspect）目标词方面的情感分类问题，提出了一个新的模型，这个新模型和之前的一些模型相比，主要的不同在于对目标词检测和目标词分类这两个任务联合进行，而并不是先后执行。论文针对不同的架构和单词表示在GemEval 2017数据集上进行了实验，实验结果显示，相比于先后执行两个任务，联合执行的方式能够获得更好的性能，具体来说，就是使用CNN架构和FastText单词表示方式能够达到实验中最好的结果。</p>
+</li>
+</ul>
+<hr>
+<h3 id="Cross-domain-SA"><a href="#Cross-domain-SA" class="headerlink" title="Cross-domain SA"></a>Cross-domain SA</h3><p><strong>跨领域的情感分类</strong></p>
+<hr>
+<ul>
+<li><p>End-to-End Adversarial Memory Network for Cross-domain Sentiment Classification</p>
+<p>跨领域情感分析近些年受到了广泛的关注，但是因为不同领域之间的差异性，在源领域训练好的情感分类器往往在目标领域不能有很好的表现。传统的方法需要手动选择在两个领域学习方式一致的pivot，而最近的深度学习方法也是学习领域之间共享的表示。但是这些方法都缺少解释性来直接选取pivot，为了解决这个问题，这篇论文提出了一个端到端的对抗记忆网络AMN，来进行跨领域的情感分析。这个模型能够使用注意力机制自动获取pivot，并且有很好的解释性。AMN包含两个参数共享的记忆网络，分别是情感分类记忆网络和领域分类记忆网络，这两个网络联合训练，使得模型选择的特征可以使情感分类错误率最小，同时也使得领域分类器能够无差别地识别目标领域和源领域的表示。论文在Amazon数据集上进行了实验，结果表明AMN能够有很好的表现。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Cross-Domain Sentiment Classification with Target Domain Specific Information</p>
+<p>跨领域情感分类在情感分类领域逐渐受到关注，使用在一个领域训练好的模型在另一个和源领域不同的目标领域进行情感分类，是跨领域情感分类的主要任务。大部分现存的跨领域情感分类方法主要着眼于源领域和目标领域之间的共同点，很少有方法关注目标领域的特有信息。这篇论文提出了一个方法，能够同时提取目标领域独有信息和两个领域共有信息，并且针对这两类信息分别训练了两个分类器，两个领域共有信息分类器使用了源领域和目标领域的标注数据进行训练，而目标领域独有信息分类器使用目标领域标注数据进行训练。这两个分类器训练完之后，再进行联合训练以提升整体效果。论文中的实验证明，这种方法能够达到SOTA结果。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>A Helping Hand: Transfer Learning for Deep Sentiment Analysis</p>
+<p>深度卷积神经网络在情感分类方面表现良好，但是网络训练本身需要大量数据，而且不同领域的情感分析需要不同的训练数据，这就需要大量的人力对数据进行标注。因而，这篇论文提出了一种方法，能够利用通用的数据进行训练，并且能够在有限数据的情况下获得比较好的泛化能力。这种方法监督外在数据生成情感向量，然后通过一个设计好的记忆组件传输给模型。论文的实验表明这种方法在不同语言的数据集上均有很好的改善。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Learning Sentence Embeddings with Auxiliary Tasks for Cross-Domain Sentiment Classification</p>
+<p>这篇论文利用神经网络架构来研究跨领域情感分类，主要借鉴了Structural Correspondence Learning，SCL 的方法，并且提出了两个辅助任务来帮助产生句子向量，这个向量能够在不同领域的情感分类中有很好的表现，此外论文还利用了情感分类器对句子向量进行了联合学习。论文的实验结果表明论文提出的方法能够在几个基准数据集上达到了SOTA的结果。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Bootstrap Domain-Specific Sentiment Classifiers from Unlabeled Corpora</p>
+<p>目前针对特定领域情感分类的方法大多需要标注好的数据，而且不能跨领域使用。所以这篇论文针对特定领域的情感分类方法进行了改进，使得分类器能够使用未标注的语料进行训练。这种方法主要分为三个步骤，分别是获取词向量，生成语义词典，以及训练分类器。论文针对这种方法进行了实验，结果表明，分类器使用线性模型的监督学习方法（比如线性SVM）比一些复杂的半监督学习方法表现效果好，此外，论文还证明了论文提出的增强方法用在无监督的情感分类方法中，比现有的无监督方法表现好，而且还能达到一些监督学习方法的水平。</p>
+</li>
+</ul>
+<hr>
+<h3 id="Emotion-Extraction"><a href="#Emotion-Extraction" class="headerlink" title="Emotion Extraction"></a>Emotion Extraction</h3><p><strong>情感抽取</strong></p>
+<hr>
+<ul>
+<li><p>A Question Answering Approach to Emotion Cause Extraction</p>
+<p>这篇论文将情感原因抽取这个任务，和自动问答结合起来，将原因抽取作为自动问答的阅读理解任务，并提出了一种记忆网络来解决这个问题。论文提出的方法是Convolutional Multiple-Slot Memory Network (ConvMS-Memnet)，这个方法可以同时获取到文本的语义特征信息和序列特征信息。经过实验评估，模型的性能能够达到SOTA的水平。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>A Co-Attention Neural Network Model for Emotion Cause Analysis with Emotional Context Awareness</p>
+<p>情感原因提取（Emotion cause analysis）是自然语言处理中的一个重要任务，现存的一些方法忽略了情感词周围的上下文，而这些信息能够为情感原因提供很好的线索。这篇论文针对这个问题，提出了一个联合注意力机制的神经网络模型，这个模型使用情感词的上下文信息对情感原因进行提取，具体方法就是使用双向LSTM和联合注意力机制将输入的句子编码成向量表示信息，然后利用卷积层对情感原因进行提取。实验结果表明，论文提出的方法和基准的方法对比，能够达到SOTA的结果。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>ICON: Interactive Conversational Memory Network for Multimodal Emotion Detection</p>
+<p>对话中的情感分析在情感分析任务中占有重要地位，但是现有的对话情感分析方法大多没有明确考虑人与人之间的交互信息对情感的影响。这篇论文针对这个问题，提出了一个迭代对话记忆网络（Interactive Conversational memory Network, ICON），这个网络是一个多模态的情感识别框架，通过对谈话者之间的情感影响进行建模，从对话情景中提取出多模态特征。论文提出的这个模型能够很好地对对话录像进行情感预测，在两个测试基准数据集上达到了SOTA的结果。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>CARER: Contextualized Affect Representations for Emotion Recognition</p>
+<p>这篇论文使用半监督和基于图的算法，对文本信息进行建模，并针对情感识别任务生成了一种基于模式的文本表示信息，这种信息能够辅助情感识别，提高情感识别的准确率，论文在基准数据集上的实验表明，论文提出的这种方法能够很在情感识别任务中达到SOTA的结果。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>Fine-Grained Emotion Detection in Health-Related Online Posts</p>
+<p>针对医疗相关的文本进行情感分析，是一项对医疗起着重要作用的任务，然而之前的一些方法仅仅只是提取出包含情感词的文本，而并没有明确给出情感类型。这篇论文在医疗相关的文本上进行细粒度情感分析，利用深度神经网络获取到高维度的特征信息，并结合基于词典的特征信息，对医疗相关文本中的情感信息进行提取。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>EmoNet: Fine-Grained Emotion Detection with Gated Recurrent Neural Networks</p>
+<p>情感检测主要是根据自然语言来检测出用户对应的情感，然而使用深度学习解决这个任务的最大阻碍就是缺少大量标注好的数据集。这篇论文针对数据集缺少的问题，提出了一个针对细粒度情感检测任务的数据集，并且利用该数据集训练了一个深度学习模型，即GRNN（Gated Recurrent Neural Networks）。论文的这个训练好的模型能够在24种细粒度的情感数据中达到SOTA的结果，平均准确率是87.58%。</p>
+</li>
+</ul>
+<hr>
+
+      
+    </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Double Belief</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://doublebelief.github.io/2019/12/31/2019paperSummary/" title="Paper Summary(2019.9-2019.12)">http://doublebelief.github.io/2019/12/31/2019paperSummary/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
+          
+            <a href="/tags/SA/" rel="tag"># SA</a>
+          
+            <a href="/tags/KG/" rel="tag"># KG</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/31/NLPpaperNotes3/" rel="next" title="NLP论文阅读笔记（Ⅲ）">
+                <i class="fa fa-chevron-left"></i> NLP论文阅读笔记（Ⅲ）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  
+    <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Double Belief">
+  
+  <p class="site-author-name" itemprop="name">Double Belief</p>
+  <div class="site-description motion-element" itemprop="description">For Code, For Beauty.</div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+  <div class="links-of-author motion-element">
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/doublebelief" title="GitHub &rarr; https://github.com/doublebelief" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+  </div>
+
+
+
+  <div class="cc-license motion-element" itemprop="license">
+  
+  
+    
+  
+  
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://github.com" title="http://github.com" rel="noopener" target="_blank">GitHub</a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+          
+          
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Paper-Summary-2019-9-2019-12"><span class="nav-number">1.</span> <span class="nav-text">Paper Summary(2019.9-2019.12)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Knowledge-Graph"><span class="nav-number">1.1.</span> <span class="nav-text">Knowledge Graph</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Translation-Model"><span class="nav-number">1.1.1.</span> <span class="nav-text">Translation Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Knowledge-Graph-Representation-Learning"><span class="nav-number">1.1.2.</span> <span class="nav-text">Knowledge Graph Representation Learning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Relation-Prediction"><span class="nav-number">1.1.3.</span> <span class="nav-text">Relation Prediction</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Natural-Language-Processing"><span class="nav-number">1.2.</span> <span class="nav-text">Natural Language Processing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Relation-Extraction"><span class="nav-number">1.2.1.</span> <span class="nav-text">Relation Extraction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Attention-Relevance"><span class="nav-number">1.2.2.</span> <span class="nav-text">Attention Relevance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Language-Model"><span class="nav-number">1.2.3.</span> <span class="nav-text">Language Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Machine-Translation"><span class="nav-number">1.2.4.</span> <span class="nav-text">Machine Translation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sentiment-Analysis"><span class="nav-number">1.3.</span> <span class="nav-text">Sentiment Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Document-Level-SA"><span class="nav-number">1.3.1.</span> <span class="nav-text">Document-Level SA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sentence-Level-SA"><span class="nav-number">1.3.2.</span> <span class="nav-text">Sentence-Level SA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Aspect-Level-SA"><span class="nav-number">1.3.3.</span> <span class="nav-text">Aspect-Level SA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cross-domain-SA"><span class="nav-number">1.3.4.</span> <span class="nav-text">Cross-domain SA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Emotion-Extraction"><span class="nav-number">1.3.5.</span> <span class="nav-text">Emotion Extraction</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Double Belief</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">143k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">2:10</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: '1f37baf4e663fd3b694b',
+    clientSecret: 'afc8f4907ac5e65b4ca9428b46c8168b0a486ea6',
+    repo: 'comments',
+    owner: 'doublebelief',
+    admin: ['doublebelief'],
+    id: md5(location.pathname),
+    
+      language: 'zh-CN',
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+
+
+
+
+
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
+
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
+
+
+
+
+
+
+
+
+  
+
+</body>
+</html>

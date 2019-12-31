@@ -121,7 +121,7 @@
 <meta property="og:image" content="http://doublebelief.github.io/images/TransformerTable2.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/image-20191029104112395.png">
 <meta property="og:image" content="http://doublebelief.github.io/images/image-20191029104527986.png">
-<meta property="og:updated_time" content="2019-12-31T08:22:03.108Z">
+<meta property="og:updated_time" content="2019-12-31T08:22:25.160Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP论文阅读笔记（Ⅲ）">
 <meta name="twitter:description" content="GraphRel: Modeling Text as Relational Graphs for Joint Entity and Relation Extraction Fu, T.-J., Li, P.-H., &amp;amp; Ma, W.-Y. (2019). GraphRel: Modeling Text as Relational Graphs for Joint Entity and Re">
@@ -419,7 +419,7 @@
                 
               
 
-              <time title="创建时间：2019-12-31 16:04:32 / 修改时间：16:22:03" itemprop="dateCreated datePublished" datetime="2019-12-31T16:04:32+08:00">2019-12-31</time>
+              <time title="创建时间：2019-12-31 16:04:32 / 修改时间：16:22:25" itemprop="dateCreated datePublished" datetime="2019-12-31T16:04:32+08:00">2019-12-31</time>
             </span>
           
 
@@ -522,15 +522,11 @@
 </li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-<ul>
 <li><p>第二阶段预测：在第一阶段中提取出的实体和关系，并不能考虑到他们之间的相互影响，所以为了考虑命名实体和关系之间的相互关系，并且关注文本中所有单词对之间的隐式特征，模型在第二阶段预测中使用关系权重GCN来进行进一步提取信息。在第一阶段之后，模型产生了一个完整的关系权重图。然后第二阶段，在关系图中采用Bi-GCN，将不同的关系的不同重要维度聚合成一个综合的单词特征。第二阶段的Bi-GCN进一步考虑了加权关系传播并针对每一个单词提取出足够多的特征。</p>
 <p><img src="/images/1570616182155.png" alt="1570616182155"></p>
 </li>
 </ul>
-<ul>
+</li>
 <li><p><strong>论文实验</strong></p>
 <p>论文在NYT和WebNLG数据集上对模型进行了评估，并采用NovelTagging，MultiDecoder作为对比。实验结果显示，GraphRel的F1值相较于之前最好的结果，在NYT上优化了3.2%，在WebNLG上优化了5.8%。同时实验也反映出第二阶段的预测确实可以提取出更多的特征信息。</p>
 </li>
@@ -846,6 +842,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/12/31/2019paperSummary/" rel="prev" title="Paper Summary(2019.9-2019.12)">
+                Paper Summary(2019.9-2019.12) <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -920,7 +920,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -966,7 +966,11 @@
         
           
         
-        <span class="site-state-item-count">4</span>
+          
+        
+          
+        
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1075,7 +1079,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">120k</span>
+    <span title="站点总字数">143k</span>
   
 
   
@@ -1086,7 +1090,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">1:49</span>
+    <span title="站点阅读时长">2:10</span>
   
 </div>
 
